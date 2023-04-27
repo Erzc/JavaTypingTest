@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.HelloController">
+   <children>
+      <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#saveFileOnAction" text="Save Results" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeOnAction" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="About">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ListView layoutX="6.0" layoutY="158.0" prefHeight="233.0" prefWidth="588.0" />
+      <TextField layoutX="6.0" layoutY="400.0" prefHeight="27.0" prefWidth="588.0" />
+      <Label layoutX="263.0" layoutY="489.0" text="SUMMARY:">
+         <font>
+            <Font name="Georgia" size="13.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="112.0" layoutY="504.0" prefHeight="125.0" prefWidth="377.0" />
+      <TextArea editable="false" layoutX="127.0" layoutY="107.0" prefHeight="41.0" prefWidth="348.0" text="1. Select the &quot;Start&quot; button to begin typing.&#10;2. Press the &quot;Enter&quot; key when you're finished typing a sentence.&#10;3. The round results and totals will appear at the bottom.&#10;4. Select File &gt; Save to save your results.&#10;&#10;                                    Good luck!" wrapText="true">
+         <font>
+            <Font name="Marlett" size="13.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="100.0" layoutY="36.0" text="How Fast Can You Type?" textFill="#007ba8">
+         <font>
+            <Font name="Georgia" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="249.0" layoutY="92.0" text="INSTRUCTIONS:">
+         <font>
+            <Font name="Georgia" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnStart" layoutX="233.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="134.0" text="START" />
+   </children>
+</AnchorPane>
