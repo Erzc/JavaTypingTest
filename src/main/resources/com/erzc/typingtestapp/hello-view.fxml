@@ -29,7 +29,7 @@
         </menus>
       </MenuBar>
       <ListView fx:id="lvPrompts" layoutX="6.0" layoutY="158.0" prefHeight="233.0" prefWidth="588.0" />
-      <TextField fx:id="tfTypeHere" layoutX="6.0" layoutY="400.0" prefHeight="27.0" prefWidth="588.0" />
+      <TextField fx:id="tfTypeHere" layoutX="6.0" layoutY="400.0" onKeyTyped="#typeOnKeyTyped" prefHeight="27.0" prefWidth="588.0" />
       <Label layoutX="263.0" layoutY="489.0" text="SUMMARY:">
          <font>
             <Font name="Georgia" size="13.0" />

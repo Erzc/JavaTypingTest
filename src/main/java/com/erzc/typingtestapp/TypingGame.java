@@ -20,7 +20,7 @@ public class TypingGame {
         gameResults = "";
     }
 
-    public void setMessage(String gResult) {
+    public void setResults(String gResult) {
         gameResults = gResult;
     }
 
