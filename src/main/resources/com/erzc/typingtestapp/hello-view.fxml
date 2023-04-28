@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.HelloController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
@@ -19,7 +18,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#saveFileOnAction" text="Save Results" />
-                  <MenuItem mnemonicParsing="false" onAction="#closeOnAction" text="Close" />
+                  <MenuItem mnemonicParsing="false" onAction="#closeOnAction" text="Exit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="About">
@@ -29,14 +28,14 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView layoutX="6.0" layoutY="158.0" prefHeight="233.0" prefWidth="588.0" />
-      <TextField layoutX="6.0" layoutY="400.0" prefHeight="27.0" prefWidth="588.0" />
+      <ListView fx:id="lvPrompts" layoutX="6.0" layoutY="158.0" prefHeight="233.0" prefWidth="588.0" />
+      <TextField fx:id="tfTypeHere" layoutX="6.0" layoutY="400.0" prefHeight="27.0" prefWidth="588.0" />
       <Label layoutX="263.0" layoutY="489.0" text="SUMMARY:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <TextArea layoutX="112.0" layoutY="504.0" prefHeight="125.0" prefWidth="377.0" />
+      <TextArea fx:id="taSummary" layoutX="112.0" layoutY="504.0" prefHeight="125.0" prefWidth="377.0" />
       <TextArea editable="false" layoutX="127.0" layoutY="107.0" prefHeight="41.0" prefWidth="348.0" text="1. Select the &quot;Start&quot; button to begin typing.&#10;2. Press the &quot;Enter&quot; key when you're finished typing a sentence.&#10;3. The round results and totals will appear at the bottom.&#10;4. Select File &gt; Save to save your results.&#10;&#10;                                    Good luck!" wrapText="true">
          <font>
             <Font name="Marlett" size="13.0" />
