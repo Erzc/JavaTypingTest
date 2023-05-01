@@ -8,12 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
-import java.io.IOException;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.*;
-
-import java.io.File;
-import java.io.PrintWriter;
 
 public class HelloController {
 
@@ -35,9 +34,9 @@ public class HelloController {
 
     //Private class variables
     private String gameTotals = "";
-    //arraylist for the ListView, which requires an ObservableList
+    //ListView requires ObservableList
     private ObservableList<String> sentenceList = FXCollections.observableArrayList();
-    String[] wordArr = {"blue", "red", "orange", "purple"};
+    ArrayList<String> commonWords = new ArrayList<String>();
 
     @FXML
     void closeOnAction(ActionEvent event) {
@@ -49,9 +48,8 @@ public class HelloController {
         //Enable textfield again
         tfTypeHere.setDisable(false);
 
-        String randElement = wordArr[rand.nextInt(wordArr.length)];
-
-        System.out.println(randElement);
+        int index = rand.nextInt(commonWords.size());
+        System.out.println(commonWords.get(index));
 
         displayResults();
     }
@@ -107,6 +105,25 @@ public class HelloController {
         }
     }
 
+    @FXML
+    public void openFile() {
+
+        try (BufferedReader buffRead = new BufferedReader(new FileReader("./1-1000.txt"))) {
+            String line;
+            while ((line = buffRead.readLine()) != null) {
+                commonWords.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        for (String element : commonWords) {
+//            System.out.println(element);
+//        }
+
+    }
+
 
 
     //Initializer method
@@ -114,6 +131,8 @@ public class HelloController {
     private void initialize(){
         //Disable textbox on initial load
         tfTypeHere.setDisable(true);
+
+        openFile(); //Open txt document and build arraylist of words
 
     }
 
