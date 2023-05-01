@@ -52,5 +52,10 @@
          </font>
       </Label>
       <Button fx:id="btnStart" layoutX="233.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="134.0" text="START" />
+      <Label fx:id="lblTime" layoutX="526.0" layoutY="109.0" text="0">
+         <font>
+            <Font name="Marlett" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

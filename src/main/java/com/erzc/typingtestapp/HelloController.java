@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 import java.util.logging.*;
 
 public class HelloController {
@@ -31,6 +32,7 @@ public class HelloController {
     //Instantiate objects
     TypingGame typeGame = new TypingGame();
     Random rand = new Random();
+    Timer timer = new Timer();
 
     //Private class variables
     private String gameTotals = "";
@@ -48,11 +50,28 @@ public class HelloController {
         //Enable textfield again
         tfTypeHere.setDisable(false);
 
+        startTimer();
+
+        runGame();
+
         int index = rand.nextInt(commonWords.size());
         System.out.println(commonWords.get(index));
 
         displayResults();
     }
+
+    @FXML
+    public void startTimer() {
+
+
+    }
+
+    @FXML
+    public void runGame() {
+
+
+    }
+
 
     @FXML
     void typeOnKeyTyped(KeyEvent event) {
@@ -108,6 +127,7 @@ public class HelloController {
     @FXML
     public void openFile() {
 
+        //Efficient way to read text
         try (BufferedReader buffRead = new BufferedReader(new FileReader("./1-1000.txt"))) {
             String line;
             while ((line = buffRead.readLine()) != null) {
@@ -117,11 +137,10 @@ public class HelloController {
             e.printStackTrace();
         }
 
-
+        //To print full word list:
 //        for (String element : commonWords) {
 //            System.out.println(element);
 //        }
-
     }
 
 
