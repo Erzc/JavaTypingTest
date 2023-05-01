@@ -4,6 +4,7 @@ public class TypingGame {
 
     //private member variables
     private String gameResults = "";
+    private long gameTime = 30;
 
 
     //Code > Generate > Constructor > None
@@ -24,8 +25,20 @@ public class TypingGame {
         gameResults = gResult;
     }
 
+    public void setTime(long time) {
+        gameTime = time;
+    }
+
 
     public String getGameResults()  {
+        return gameResults;
+    }
+
+    public long GetTime() {
+        return gameTime;
+    }
+
+    public String getResults() {
         return gameResults;
     }
 
