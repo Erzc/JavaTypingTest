@@ -41,11 +41,12 @@ public class HelloController {
     @FXML
     private ComboBox<String> cbxTimer;
 
+    //------------------------
     //Instantiate objects
     TypingGame typeGame = new TypingGame();
     Random rand = new Random();
 
-
+    //------------------------
     //Private class variables
     private String gameTotals = "";
     double clock = 0.1;
@@ -55,6 +56,8 @@ public class HelloController {
     private ObservableList<String> cbList = FXCollections.observableArrayList("10", "30", "60", "90");
     private ArrayList<String> commonWords = new ArrayList<String>();
 
+    //------------------------
+    //Methods
     @FXML
     void closeOnAction(ActionEvent event) {
         Platform.exit();
@@ -213,7 +216,7 @@ public class HelloController {
             e.printStackTrace();
         }
 
-        //To print full word list:
+        //Print full word list:
 //        for (String element : commonWords) {
 //            System.out.println(element);
 //        }
@@ -238,7 +241,6 @@ public class HelloController {
 
 
     }
-
 
 
     //Initializer method

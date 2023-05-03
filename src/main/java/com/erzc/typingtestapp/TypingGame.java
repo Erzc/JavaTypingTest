@@ -2,7 +2,8 @@ package com.erzc.typingtestapp;
 
 public class TypingGame {
 
-    //private member variables
+    //------------------------
+    //Private member variables
     private String gameResults = "";
     private long gameTime = 30;
 
@@ -11,12 +12,13 @@ public class TypingGame {
     public TypingGame() {
     }
 
+    //------------------------
+    //Methods
     private void calculate() {
 
         //Calculate round accuracy
 
         //Calculate total accuracy
-
 
         gameResults = "";
     }
