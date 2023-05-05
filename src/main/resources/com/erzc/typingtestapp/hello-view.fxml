@@ -24,7 +24,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="About">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#aboutOnAction" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#aboutOnAction" text="About Typing Test" />
             </items>
           </Menu>
         </menus>
@@ -39,7 +39,7 @@
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="taSummary" layoutX="111.0" layoutY="537.0" prefHeight="125.0" prefWidth="377.0" />
+      <TextArea fx:id="taSummary" layoutX="111.0" layoutY="537.0" prefHeight="125.0" prefWidth="377.0" wrapText="true" />
       <TextArea editable="false" layoutX="127.0" layoutY="107.0" prefHeight="41.0" prefWidth="348.0" text="1. Set the timer (if you want more than 30 seconds).&#10;2. Select the &quot;Start&quot; button and begin typing.&#10;3. The round results and totals will appear at the bottom.&#10;4. Select File &gt; Save to save your results.&#10;&#10;                                    Good luck!" wrapText="true">
          <font>
             <Font name="Marlett" size="13.0" />
@@ -56,11 +56,11 @@
          </font>
       </Label>
       <Button fx:id="btnStart" layoutX="233.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="134.0" text="START" textFill="#00c310" />
-      <Label fx:id="lblTime" layoutX="286.0" layoutY="389.0" text="30">
+      <Label fx:id="lblTime" layoutX="49.0" layoutY="429.0" text="30">
          <font>
             <Font name="Marlett" size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbxTimer" layoutX="127.0" layoutY="388.0" onAction="#onActionComboBoxEvent" prefHeight="27.0" prefWidth="123.0" promptText="Set the timer" />
+      <ComboBox fx:id="cbxTimer" layoutX="15.0" layoutY="389.0" onAction="#onActionComboBoxEvent" prefHeight="27.0" prefWidth="123.0" promptText="Set the timer" />
    </children>
 </AnchorPane>

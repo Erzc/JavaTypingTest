@@ -2,7 +2,6 @@ package com.erzc.typingtestapp;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -19,7 +18,6 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Timer;
 import java.util.logging.*;
 
 public class HelloController {
@@ -49,8 +47,13 @@ public class HelloController {
     //------------------------
     //Private class variables
     private String gameTotals = "";
-    double clock = 0.1;
-    private long startTime ;
+    private char character = 'a';
+    private String word = "";
+    private double clock = 0.1;
+    private int tempWordIndex = 0;
+    private int tempPoints = 0;
+    private long startTime = 0;
+    long numTime = 0;
     //ListView requires ObservableList
     private ObservableList<String> sentenceList = FXCollections.observableArrayList();
     private ObservableList<String> cbList = FXCollections.observableArrayList("10", "30", "60", "90");
@@ -70,16 +73,13 @@ public class HelloController {
 
         startTimer();
 
-        runGame();
-
-        int index = rand.nextInt(commonWords.size());
-        System.out.println(commonWords.get(index));
-
         displayResults();
     }
 
     @FXML
     public void startTimer() {
+
+        //cbxTimer.setDisable(true);
 
         //DoubleProperty is mutable and observed for changes, useful for data bindings
         DoubleProperty time = new SimpleDoubleProperty();
@@ -93,12 +93,20 @@ public class HelloController {
                 startTime = System.currentTimeMillis();
                 running.set(true);
                 super.start();
+                newWord(); //Get a new word
+                tempWordIndex = 0;
+                tempPoints = 0;
+                cbxTimer.setDisable(true);
+                btnStart.setDisable(true);
             }
 
             @Override
             public void stop() {
                 running.set(false);
                 super.stop();
+                cbxTimer.setDisable(false);
+                btnStart.setDisable(false);
+                lvPrompts.getItems().clear(); //clear listview
             }
 
 //            @Override
@@ -144,20 +152,47 @@ public class HelloController {
 
     }
 
-
     @FXML
-    public void runGame() {
+    public void newWord() {
+
+
+        int index = rand.nextInt(commonWords.size());
+        //System.out.println(commonWords.get(index));
+
+        word = commonWords.get(index);
+
+        lvPrompts.getItems().add(0, word);
 
 
     }
 
-
     @FXML
     void typeOnKeyTyped(KeyEvent event) {
 
-        String character = event.getCharacter();
+        //character = event.getCharacter();
 
-        System.out.println("Key pressed: " + character);
+        character = event.getCharacter().charAt(0);
+        //System.out.println("Key pressed: " + character);
+
+        if (tempWordIndex < word.length())
+        {
+            if (character == word.charAt(tempWordIndex))
+            {
+                tempPoints++;
+                tempWordIndex++;
+            }
+            else
+            {
+                tempPoints--;
+            }
+        }
+        else
+        {
+            tempWordIndex = 0;
+            tfTypeHere.setText(""); //clear textfield in order to type a new word
+            newWord(); //Get a new word
+        }
+
 
     }
 
@@ -241,13 +276,18 @@ public class HelloController {
         else
         {
             String time = cbxTimer.getValue();
-            long numTime = Long.parseLong(time); //convert string to double
+            numTime = Long.parseLong(time); //convert string to double
             typeGame.setTime(numTime);
             lblTime.setText(Long.toString(numTime));
         }
 
 
     }
+
+//    @FXML
+//    private void setTimerLabel() {
+//
+//    }
 
 
     //Initializer method
