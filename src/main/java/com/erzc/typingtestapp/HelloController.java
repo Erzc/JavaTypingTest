@@ -68,8 +68,6 @@ public class HelloController {
 
     @FXML
     void handleStartButtonAction(ActionEvent event) {
-        //Enable textfield again
-        tfTypeHere.setDisable(false);
 
         startTimer();
 
@@ -96,6 +94,7 @@ public class HelloController {
                 newWord(); //Get a new word
                 tempWordIndex = 0;
                 tempPoints = 0;
+                tfTypeHere.setDisable(false);
                 cbxTimer.setDisable(true);
                 btnStart.setDisable(true);
             }
@@ -104,6 +103,7 @@ public class HelloController {
             public void stop() {
                 running.set(false);
                 super.stop();
+                tfTypeHere.setDisable(true);
                 cbxTimer.setDisable(false);
                 btnStart.setDisable(false);
                 lvPrompts.getItems().clear(); //clear listview

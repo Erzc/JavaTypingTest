@@ -39,7 +39,7 @@
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="taSummary" layoutX="111.0" layoutY="537.0" prefHeight="125.0" prefWidth="377.0" wrapText="true" />
+      <TextArea fx:id="taSummary" editable="false" layoutX="111.0" layoutY="537.0" prefHeight="125.0" prefWidth="377.0" wrapText="true" />
       <TextArea editable="false" layoutX="127.0" layoutY="107.0" prefHeight="41.0" prefWidth="348.0" text="1. Set the timer (if you want more than 30 seconds).&#10;2. Select the &quot;Start&quot; button and begin typing.&#10;3. The round results and totals will appear at the bottom.&#10;4. Select File &gt; Save to save your results.&#10;&#10;                                    Good luck!" wrapText="true">
          <font>
             <Font name="Marlett" size="13.0" />
