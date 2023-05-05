@@ -204,6 +204,13 @@ public class HelloController {
     }
 
     @FXML
+    void aboutOnAction(ActionEvent event) {
+
+        //create a message about the Typing Test and display with a JOP
+        JOptionPane.showMessageDialog(null, "Typing Test is a JavaFX application written by Eric N.");
+    }
+
+    @FXML
     public void openFile() {
 
         //Efficient way to read text
