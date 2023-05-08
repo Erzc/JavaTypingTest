@@ -37,6 +37,8 @@ public class HelloController {
     @FXML
     private Label lblTime;
     @FXML
+    private Label lblPoints;
+    @FXML
     private ComboBox<String> cbxTimer;
 
     //------------------------
@@ -180,10 +182,12 @@ public class HelloController {
             {
                 tempPoints++;
                 tempWordIndex++;
+                lblPoints.setText(Long.toString(tempPoints));
             }
             else
             {
                 tempPoints--;
+                lblPoints.setText(Long.toString(tempPoints));
             }
         }
         else
