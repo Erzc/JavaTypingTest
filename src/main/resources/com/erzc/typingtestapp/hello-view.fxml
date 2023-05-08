@@ -29,8 +29,8 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView fx:id="lvPrompts" layoutX="6.0" layoutY="158.0" prefHeight="224.0" prefWidth="588.0" />
-      <TextField fx:id="tfTypeHere" alignment="CENTER" layoutX="121.0" layoutY="422.0" onKeyTyped="#typeOnKeyTyped" prefHeight="39.0" prefWidth="360.0">
+      <ListView fx:id="lvPrompts" layoutX="387.0" layoutY="106.0" prefHeight="242.0" prefWidth="190.0" />
+      <TextField fx:id="tfTypeHere" alignment="CENTER" layoutX="47.0" layoutY="428.0" onKeyTyped="#typeOnKeyTyped" prefHeight="39.0" prefWidth="178.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
@@ -40,9 +40,9 @@
          </font>
       </Label>
       <TextArea fx:id="taSummary" editable="false" layoutX="111.0" layoutY="537.0" prefHeight="125.0" prefWidth="377.0" wrapText="true" />
-      <TextArea editable="false" layoutX="127.0" layoutY="107.0" prefHeight="41.0" prefWidth="348.0" text="1. Set the timer (if you want more than 30 seconds).&#10;2. Select the &quot;Start&quot; button and begin typing.&#10;3. The round results and totals will appear at the bottom.&#10;4. Select File &gt; Save to save your results.&#10;&#10;                                    Good luck!" wrapText="true">
+      <TextArea editable="false" layoutX="21.0" layoutY="107.0" prefHeight="97.0" prefWidth="352.0" text="1. Select the combobox to set the timer.&#10;2. Select the &quot;Start&quot; button and begin typing.&#10;3. Round results will appear under the Summary text.&#10;4. Select File &gt; Save to save your results.&#10;&#10;                               Good luck!" wrapText="true">
          <font>
-            <Font name="Marlett" size="13.0" />
+            <Font name="Marlett" size="14.0" />
          </font>
       </TextArea>
       <Label layoutX="100.0" layoutY="36.0" text="How Fast Can You Type?" textFill="#007ba8">
@@ -50,24 +50,54 @@
             <Font name="Georgia" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="249.0" layoutY="92.0" text="INSTRUCTIONS:">
+      <Label layoutX="146.0" layoutY="92.0" text="INSTRUCTIONS:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnStart" layoutX="233.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="134.0" text="START" textFill="#00c310" />
-      <Label fx:id="lblTime" layoutX="50.0" layoutY="429.0" text="30" textFill="#6f6f6f">
+      <Button fx:id="btnStart" layoutX="35.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="122.0" text="START" textFill="#00c310" />
+      <Label fx:id="lblTime" layoutX="260.0" layoutY="227.0" text="30" textFill="#6f6f6f">
+         <font>
+            <Font name="Marlett" size="36.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbxTimer" layoutX="219.0" layoutY="275.0" onAction="#onActionComboBoxEvent" prefHeight="25.0" prefWidth="122.0" promptText="Set the timer" />
+      <Label fx:id="lblPoints" layoutX="402.0" layoutY="459.0" text="0">
          <font>
             <Font name="Marlett" size="24.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbxTimer" layoutX="16.0" layoutY="390.0" onAction="#onActionComboBoxEvent" prefHeight="27.0" prefWidth="123.0" promptText="Set the timer" />
-      <Label fx:id="lblPoints" layoutX="528.0" layoutY="429.0" text="0" textFill="#008ee5">
+      <Label layoutX="390.0" layoutY="440.0" text="POINTS:">
          <font>
-            <Font name="Marlett" size="24.0" />
+            <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="508.0" layoutY="409.0" text="POINTS:">
+      <Label fx:id="lblWordPrompt" layoutX="47.0" layoutY="377.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblWordPrompt1" layoutX="157.0" layoutY="377.0" textFill="#9a9a9a">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblWordPrompt2" layoutX="270.0" layoutY="377.0" textFill="#9a9a9a">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblWordPrompt3" layoutX="386.0" layoutY="377.0" textFill="#9a9a9a">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="433.0" layoutY="92.0" text="TYPED WORDS:">
+         <font>
+            <Font name="Georgia" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="471.0" text="TYPE HERE">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>

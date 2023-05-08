@@ -2,6 +2,7 @@ package com.erzc.typingtestapp;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -12,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import javax.swing.*;
@@ -39,6 +41,17 @@ public class HelloController {
     @FXML
     private Label lblPoints;
     @FXML
+    private Label lblWordPrompt;
+
+    @FXML
+    private Label lblWordPrompt1;
+
+    @FXML
+    private Label lblWordPrompt2;
+
+    @FXML
+    private Label lblWordPrompt3;
+    @FXML
     private ComboBox<String> cbxTimer;
 
     //------------------------
@@ -50,7 +63,7 @@ public class HelloController {
     //Private class variables
     private String gameTotals = "";
     private char character = 'a';
-    private String word = "";
+    private String word = "", word1 = "", word2 = "", word3 = "";
     private double clock = 0.1;
     private int tempWordIndex = 0;
     private int tempPoints = 0;
@@ -70,6 +83,9 @@ public class HelloController {
 
     @FXML
     void handleStartButtonAction(ActionEvent event) {
+
+        lvPrompts.getItems().clear(); //clear listview
+        tfTypeHere.setText(""); //clear textfield
 
         startTimer();
 
@@ -93,7 +109,7 @@ public class HelloController {
                 startTime = System.currentTimeMillis();
                 running.set(true);
                 super.start();
-                newWord(); //Get a new word
+                newWordGroup(); //Get a new word
                 tempWordIndex = 0;
                 tempPoints = 0;
                 tfTypeHere.setDisable(false);
@@ -108,7 +124,6 @@ public class HelloController {
                 tfTypeHere.setDisable(true);
                 cbxTimer.setDisable(false);
                 btnStart.setDisable(false);
-                lvPrompts.getItems().clear(); //clear listview
             }
 
 //            @Override
@@ -136,13 +151,13 @@ public class HelloController {
             }
         };
 
-        //timer.start();
+        timer.start();
 
 
-//        btnStart.textProperty().bind(
-//                Bindings.when(running)
-//                        .then("RUNNING")
-//                        .otherwise("START"));
+        btnStart.textProperty().bind(
+                Bindings.when(running)
+                        .then("RUNNING")
+                        .otherwise("START"));
 
         btnStart.setOnAction(e -> {
             if (running.get()) {
@@ -155,18 +170,48 @@ public class HelloController {
     }
 
     @FXML
-    public void newWord() {
+    public void newWordGroup() {
 
+        int index = 0, index1 = 0, index2 = 0, index3 = 0;
 
-        int index = rand.nextInt(commonWords.size());
+        index = rand.nextInt(commonWords.size());
+        index1 = rand.nextInt(commonWords.size());
+        index2 = rand.nextInt(commonWords.size());
+        index3 = rand.nextInt(commonWords.size());
         //System.out.println(commonWords.get(index));
 
         word = commonWords.get(index);
+        word1 = commonWords.get(index1);
+        word2 = commonWords.get(index2);
+        word3 = commonWords.get(index3);
 
-        lvPrompts.getItems().add(0, word);
-
+        lblWordPrompt.setText(word);
+        lblWordPrompt1.setText(word1);
+        lblWordPrompt2.setText(word2);
+        lblWordPrompt3.setText(word3);
 
     }
+
+    @FXML
+    public void newWord() {
+
+        int index = 0;
+
+        index = rand.nextInt(commonWords.size());
+        //System.out.println(commonWords.get(index));
+
+        word = word1;
+        word1 = word2;
+        word2 = word3;
+        word3 = commonWords.get(index);
+
+        lblWordPrompt.setText(word);
+        lblWordPrompt1.setText(word1);
+        lblWordPrompt2.setText(word2);
+        lblWordPrompt3.setText(word3);
+
+    }
+
 
     @FXML
     void typeOnKeyTyped(KeyEvent event) {
@@ -183,17 +228,20 @@ public class HelloController {
                 tempPoints++;
                 tempWordIndex++;
                 lblPoints.setText(Long.toString(tempPoints));
+                lblPoints.setTextFill(Color.color(0, 1, 0));
             }
             else
             {
                 tempPoints--;
                 lblPoints.setText(Long.toString(tempPoints));
+                lblPoints.setTextFill(Color.color(1, 0, 0));
             }
         }
         else
         {
             tempWordIndex = 0;
             tfTypeHere.setText(""); //clear textfield in order to type a new word
+            lvPrompts.getItems().add(0, word); //Add word to listview
             newWord(); //Get a new word
         }
 
