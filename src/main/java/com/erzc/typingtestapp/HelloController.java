@@ -70,15 +70,7 @@ public class HelloController {
 
     private ObservableList<String> cbList = FXCollections.observableArrayList("10", "30", "60", "90");
     private ArrayList<String> commonWords = new ArrayList<String>();
-   // private ArrayList<String> gameWords = new ArrayList<String>();
-
-    private ObservableList<String> gameWords = FXCollections.observableArrayList();
-
-
-
-
-
-
+    private ArrayList<String> gameWords = new ArrayList<String>();
 
     //------------------------
     //Methods
@@ -118,7 +110,6 @@ public class HelloController {
                 cbxTimer.setDisable(true);
                 btnStart.setDisable(true);
                 lblWordPrompt.setVisible(true);
-
                 lvPrompts.getItems().clear(); //clear listview
                 tfTypeHere.setText(""); //clear textfield
             }
@@ -131,7 +122,6 @@ public class HelloController {
                 cbxTimer.setDisable(false);
                 btnStart.setDisable(false);
                 lblWordPrompt.setVisible(false);
-                lvPrompts.setItems(gameWords);
             }
 
 //            @Override
@@ -263,8 +253,10 @@ public class HelloController {
         else
         {
             tempLetterIndex = 0;
-            tempWordIndex++;
             tfTypeHere.setText(""); //clear textfield in order to type a new word
+            //lvPrompts.getItems().add(0, word); //Add word to listview
+            lvPrompts.getItems().add(0, gameWords.get(tempWordIndex));
+            tempWordIndex++;
 
             newWord(1); //Get a new word
         }
