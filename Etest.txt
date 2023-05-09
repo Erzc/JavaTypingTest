@@ -1,1 +1,9 @@
-0
+Typing Game Results: 
+Time: 10.0 seconds
+Correct characters typed: 55.0
+Incorrect characters typed: 7.0
+Total words typed: 11.0
+
+Words per minute: 66.0
+Accuracy: 88.71%
+

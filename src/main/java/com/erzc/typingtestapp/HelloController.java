@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -239,31 +240,32 @@ public class HelloController {
     @FXML
     void typeOnKeyTyped(KeyEvent event) {
 
-        //character = event.getCharacter();
-
         character = event.getCharacter().charAt(0);
+        //KeyCode checkBspc = event.getCode();
+
         //System.out.println("Key pressed: " + character);
 
         //String newestWord = gameWords.get(gameWords.size() - 1);
         String newestWord = gameWords.get(tempWordIndex);
 
+
         if (tempLetterIndex < newestWord.length())
         {
-            //if (character == word.charAt(tempLetterIndex))
-            if (character == newestWord.charAt(tempLetterIndex))
-            {
-                corrCharCount++;
-                tempLetterIndex++;
-                lblCorrect.setText(Long.toString(corrCharCount));
-                //lblCorrect.setTextFill(Color.color(0, 1, 0));
-            }
-            else
-            {
-                incorrCharCount++;
-                lblIncorrect.setText(Long.toString(incorrCharCount));
+            //Check key entered is not a backspace
+            //if (event.getCode() != "\b") {
+                if (character == newestWord.charAt(tempLetterIndex)) {
+                    corrCharCount++;
+                    tempLetterIndex++;
+                    lblCorrect.setText(Long.toString(corrCharCount));
+                    //lblCorrect.setTextFill(Color.color(0, 1, 0));
+                }
+                else {
+                    incorrCharCount++;
+                    lblIncorrect.setText(Long.toString(incorrCharCount));
 
-                //lblIncorrect.setTextFill(Color.color(1, 0, 0));
-            }
+                    //lblIncorrect.setTextFill(Color.color(1, 0, 0));
+                }
+            //}
         }
         else
         {
