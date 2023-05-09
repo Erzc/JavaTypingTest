@@ -39,7 +39,10 @@ public class HelloController {
     @FXML
     private Label lblTime;
     @FXML
-    private Label lblPoints;
+    private Label lblCorrect;
+
+    @FXML
+    private Label lblIncorrect;
     @FXML
     private Label lblWordPrompt;
 
@@ -65,7 +68,7 @@ public class HelloController {
     private char character = 'a';
     private String word = "", phrase = "";
     private double clock = 0.1;
-    private int tempLetterIndex = 0, tempWordIndex = 0, tempPoints = 0;
+    private int tempLetterIndex = 0, tempWordIndex = 0, corrCharCount = 0, incorrCharCount = 0, totalWordsTyped = 0;
     private long startTime = 0, numTime = 0;
 
     private ObservableList<String> cbList = FXCollections.observableArrayList("10", "30", "60", "90");
@@ -105,13 +108,18 @@ public class HelloController {
                 running.set(true);
                 super.start();
                 tempLetterIndex = 0;
-                tempPoints = 0;
+                corrCharCount = 0;
+                incorrCharCount = 0;
+                totalWordsTyped = 0;
                 tfTypeHere.setDisable(false);
                 cbxTimer.setDisable(true);
                 btnStart.setDisable(true);
                 lblWordPrompt.setVisible(true);
                 lvPrompts.getItems().clear(); //clear listview
                 tfTypeHere.setText(""); //clear textfield
+                lblIncorrect.setText("0");
+                lblCorrect.setText("0");
+                tfTypeHere.requestFocus();
             }
 
             @Override
@@ -122,6 +130,12 @@ public class HelloController {
                 cbxTimer.setDisable(false);
                 btnStart.setDisable(false);
                 lblWordPrompt.setVisible(false);
+
+                typeGame.setCorrect(corrCharCount);
+                typeGame.setIncorrect(incorrCharCount);
+                typeGame.setTotalWords(totalWordsTyped);
+
+                taSummary.setText(typeGame.getGameResults());
             }
 
 //            @Override
@@ -132,7 +146,7 @@ public class HelloController {
 
             @Override
             public void handle(long timestamp) {
-                long limit = typeGame.GetTime() * 1000;
+                double limit = typeGame.GetTime() * 1000;
                 long now = System.currentTimeMillis();
 
                 clock = (limit - (now - startTime)) / 1000.0;
@@ -238,16 +252,17 @@ public class HelloController {
             //if (character == word.charAt(tempLetterIndex))
             if (character == newestWord.charAt(tempLetterIndex))
             {
-                tempPoints++;
+                corrCharCount++;
                 tempLetterIndex++;
-                lblPoints.setText(Long.toString(tempPoints));
-                lblPoints.setTextFill(Color.color(0, 1, 0));
+                lblCorrect.setText(Long.toString(corrCharCount));
+                //lblCorrect.setTextFill(Color.color(0, 1, 0));
             }
             else
             {
-                tempPoints--;
-                lblPoints.setText(Long.toString(tempPoints));
-                lblPoints.setTextFill(Color.color(1, 0, 0));
+                incorrCharCount++;
+                lblIncorrect.setText(Long.toString(incorrCharCount));
+
+                //lblIncorrect.setTextFill(Color.color(1, 0, 0));
             }
         }
         else
@@ -258,6 +273,7 @@ public class HelloController {
             lvPrompts.getItems().add(0, gameWords.get(tempWordIndex));
             tempWordIndex++;
 
+            totalWordsTyped++;
             newWord(1); //Get a new word
         }
 
