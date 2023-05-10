@@ -11,11 +11,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
@@ -27,6 +31,8 @@ public class HelloController {
 
     @FXML
     private Button btnStart;
+    @FXML
+    private Button btnViewDb;
 
     @FXML
     private ListView<String> lvPrompts;
@@ -65,6 +71,9 @@ public class HelloController {
 
     //------------------------
     //Private class variables
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     private String gameTotals = "";
     private char character = 'a';
     private String word = "", phrase = "";
@@ -81,6 +90,36 @@ public class HelloController {
     @FXML
     void closeOnAction(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    void switchToDbScene(ActionEvent event) {
+        Stage oldStage = (Stage)btnViewDb.getScene().getWindow();
+        oldStage.close();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("db-view.fxml"));
+            root = loader.load();
+
+            DbController controller = loader.getController();
+
+            controller.transferData(typeGame.getGameResults());
+
+            //show scene in new window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Typing Test Database");
+            stage.show();
+
+
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    @FXML
+    public void transferData(String mess) {
+        //lblResults.setText(mess);
     }
 
     @FXML
