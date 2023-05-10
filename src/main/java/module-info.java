@@ -3,6 +3,8 @@ module com.erzc.typingtestapp {
     requires javafx.fxml;
     requires java.logging;
     requires java.desktop;
+    requires java.sql;
+    requires java.naming;
 
 
     opens com.erzc.typingtestapp to javafx.fxml;

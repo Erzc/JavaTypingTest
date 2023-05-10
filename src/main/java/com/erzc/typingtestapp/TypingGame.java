@@ -6,9 +6,8 @@ public class TypingGame {
 
     //------------------------
     //Private member variables
-    private String gameResults = "", accuracyFormat = "";
+    private String gameResults = "";
     private double gameTime = 30, corrChars = 0, incorrChars = 0, totalWords = 0, accuracy = 0, wpm = 0;
-
 
     //Code > Generate > Constructor > None
     public TypingGame() {
@@ -48,21 +47,30 @@ public class TypingGame {
         //Calculate round accuracy
         accuracy = (corrChars / (incorrChars + corrChars)) * 100;
 
-        //Format to 3 decimal places
-        DecimalFormat df = new DecimalFormat("#.###");
-        accuracyFormat = df.format(accuracy);
-
         formatResults();
     }
 
     private void formatResults() {
 
+        //Format decimal place for displaying to user
+        DecimalFormat dfTwo = new DecimalFormat("#.##"); //Format to 2 decimal places
+        DecimalFormat dfOne = new DecimalFormat("#");
+
+        String accuracyFormat = dfTwo.format(accuracy);
+
+        String gameTimeFormat = dfOne.format(gameTime);
+        String corrCharsFormat = dfOne.format(corrChars);
+        String incorrCharsFormat = dfOne.format(incorrChars);
+        String totalWordsFormat = dfOne.format(totalWords);
+        String wpmFormat = dfOne.format(wpm);
+
+        //String to display to user
         gameResults = "Typing Game Results: \n" +
-                "Time: " + gameTime + " seconds\n" +
-                "Correct characters typed: " + corrChars + "\n" +
-                "Incorrect characters typed: " + incorrChars + "\n" +
-                "Total words typed: " + totalWords + "\n\n" +
-                "Words per minute: " + wpm + "\n" +
+                "Time: " + gameTimeFormat + " seconds\n" +
+                "Correct characters typed: " + corrCharsFormat + "\n" +
+                "Incorrect characters typed: " + incorrCharsFormat + "\n" +
+                "Total words typed: " + totalWordsFormat + "\n\n" +
+                "Words per minute: " + wpmFormat + "\n" +
                 "Accuracy: " + accuracyFormat + "%\n";
 
     }

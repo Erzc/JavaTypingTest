@@ -10,6 +10,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.HelloController">
@@ -30,7 +34,7 @@
         </menus>
       </MenuBar>
       <ListView fx:id="lvPrompts" layoutX="387.0" layoutY="106.0" prefHeight="242.0" prefWidth="190.0" />
-      <TextField fx:id="tfTypeHere" alignment="CENTER" layoutX="47.0" layoutY="428.0" onKeyTyped="#typeOnKeyTyped" prefHeight="39.0" prefWidth="178.0">
+      <TextField fx:id="tfTypeHere" layoutX="47.0" layoutY="428.0" onKeyTyped="#typeOnKeyTyped" prefHeight="39.0" prefWidth="178.0">
          <font>
             <Font size="18.0" />
          </font></TextField>
@@ -72,22 +76,25 @@
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblWordPrompt" layoutX="47.0" layoutY="377.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblWordPrompt1" layoutX="157.0" layoutY="377.0" textFill="#9a9a9a">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblWordPrompt2" layoutX="270.0" layoutY="377.0" textFill="#9a9a9a">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblWordPrompt3" layoutX="386.0" layoutY="377.0" textFill="#9a9a9a">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="35.0" layoutX="43.0" layoutY="378.0" strokeType="OUTSIDE" width="535.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.5299999713897705" blue="0.5299999713897705" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.75" green="0.9202127456665039" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Rectangle>
+      <Label fx:id="lblWordPrompt" layoutX="47.0" layoutY="377.0" text="example example example example example">
          <font>
             <Font size="24.0" />
          </font>
@@ -97,7 +104,7 @@
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="471.0" text="TYPE HERE">
+      <Label layoutX="47.0" layoutY="472.0" text="TYPE HERE">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
