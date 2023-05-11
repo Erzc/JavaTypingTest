@@ -1,5 +1,7 @@
 package com.erzc.typingtestapp;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,15 +24,17 @@ public class DBController {
     private Scene scene;
     private Parent root;
 
+    int recordIDDB = 0;
+    String gameNameDB = "Round 1", roundResultsDB = "";
+    double totalWordsDB = 0.0, wpmDB = 0.0, accuracyDB = 0.0;
+    ObservableList<String> wordsOL = FXCollections.observableArrayList();
+
+    //Create an object of the DBManager class to use
+    private DBManager manager = new DBManager();
 
     //------------------------
     //Methods
 
-
-
-
-
-    //int recordID, double jgameName, double jtotalWords, double jwpm, double jaccuracy
 
 
 
@@ -52,8 +56,8 @@ public class DBController {
 
             //create an instance for the HelloController:
             HelloController controller = loader.getController();
-            //use the instance to access the transferData method and pass a String
-            //controller.transferData(finScore);
+            //use the instance to access the transferData method and pass an observable list
+            controller.transferData(wordsOL, roundResultsDB);
 
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -67,8 +71,68 @@ public class DBController {
     }
 
     @FXML
-    public void transferData(String mess) {
-        lblResults.setText(mess);
+    private void getRecordValues(){
+        //extract the text values from the textFields, converts if necessary, and assigns to the
+        //class member variables i.e. columns in the db
+
+
+        /*
+
+        if (txtFieldName.getText().isEmpty() ||
+                txtFieldWords.getText().isEmpty() ||
+                txtFieldWPM.getText().isEmpty() ||
+                txtFieldAccuracy.getText().isEmpty())
+        {
+            //To get record values if ID is entered
+            if (txtfieldID.getText().isEmpty()) {
+                recordIDDB = -123;
+            }
+            //Otherwise, return -1 so field can't be set later
+            else {
+                recordIDDB = -123;
+                String sRecordID = txtfieldID.getText();
+                recordIDDB = Integer.parseInt(sRecordID); //convert String to int
+            }
+
+            gameNameDB = "Please enter ID";
+            totalWordsDB = -1.0;
+            wpmDB = -1.0;
+            accuracyDB = -1.0;
+        }
+        else
+        {
+            String sRecordID = txtfieldID.getText();
+            recordIDDB = Integer.parseInt(sRecordID); //convert String to int
+
+            gameNameDB = txtFieldName.getText();
+
+            String sTotalWords = txtFieldWords.getText();
+            totalWordsDB = Double.parseDouble(sTotalWords)
+
+            String sWpm = txtFieldWPM.getText();
+            wpmDB = Double.parseDouble(sWpm)
+
+            String sAccuracy = txtFieldAccuracy.getText();
+            accuracyDB = Double.parseDouble(sAccuracy)
+        }
+
+
+
+         */
+
+    }
+
+
+
+    @FXML
+    public void transferData(String resultsC, double wordsC, double wpmC,
+                             double accuracyC, ObservableList<String> wordsOLC) {
+        roundResultsDB = resultsC;
+        totalWordsDB = wordsC;
+        wpmDB = wpmC;
+        accuracyDB = accuracyC;
+        wordsOL = wordsOLC;
+        //lblResults.setText(mess);
     }
 
 

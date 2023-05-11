@@ -72,9 +72,8 @@ public class HelloController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private String gameTotals = "";
+    private String gameTotals = "", word = "", phrase = "";;
     private char character = 'a';
-    private String word = "", phrase = "";
     private double clock = 0.1;
     private int tempLetterIndex = 0, tempWordIndex = 0, corrCharCount = 0, incorrCharCount = 0, totalWordsTyped = 0;
     private long startTime = 0, numTime = 0;
@@ -82,6 +81,7 @@ public class HelloController {
     private ObservableList<String> cbList = FXCollections.observableArrayList("10", "30", "60", "90");
     private ArrayList<String> commonWords = new ArrayList<String>();
     private ArrayList<String> gameWords = new ArrayList<String>();
+    ObservableList<String> wordsOL = FXCollections.observableArrayList();
 
     //------------------------
     //Methods
@@ -101,7 +101,9 @@ public class HelloController {
 
             DBController controller = loader.getController();
 
-            controller.transferData(typeGame.getGameResults());
+            wordsOL = lvPrompts.getItems();
+            controller.transferData(typeGame.getGameResults(), typeGame.GetTotalWords(), typeGame.GetWPM(),
+           typeGame.GetAccuracy(), wordsOL);
 
             //show scene in new window
             Stage stage = new Stage();
@@ -116,8 +118,15 @@ public class HelloController {
     }
 
     @FXML
-    public void transferData(String mess) {
-        //lblResults.setText(mess);
+    public void transferData(ObservableList<String> wordsOLDB, String roundResultsDB) {
+
+        wordsOL = wordsOLDB;
+        String roundResults = roundResultsDB;
+
+        lvPrompts.setItems(wordsOL);
+        taSummary.setText(roundResults);
+
+
     }
 
     @FXML
@@ -430,7 +439,6 @@ public class HelloController {
 
         //get the selected index, single selection then getSelectedIndex
         int index = cbxTimer.getSelectionModel().getSelectedIndex();
-
 
         newWord(7); //Create 7 new words to display
 

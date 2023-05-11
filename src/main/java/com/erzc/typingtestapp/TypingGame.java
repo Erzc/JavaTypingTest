@@ -16,27 +16,29 @@ public class TypingGame {
     //------------------------
     //Methods
 
-    public void setResults(String gResult) {
-        gameResults = gResult;
-    }
-
-    public void setTime(double time) {
-        gameTime = time;
-    }
 
     public String getGameResults()  {
         return gameResults;
     }
-
     public double GetTime() {
         return gameTime;
     }
+    public double GetWPM() {
+        return wpm;
+    }
+    public double GetTotalWords() {
+        return totalWords;
+    }
+    public double GetAccuracy() {
+        return accuracy;
+    }
 
 
+    public void setTime(double time) {
+        gameTime = time;
+    }
     public void setCorrect(double corrCh) { corrChars = corrCh; }
-
     public void setIncorrect(double incorrCh) { incorrChars = incorrCh; }
-
     public void setTotalWords(double totalW) { totalWords = totalW; calculate(); }
 
     private void calculate() {
