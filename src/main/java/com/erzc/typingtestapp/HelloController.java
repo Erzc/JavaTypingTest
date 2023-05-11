@@ -15,9 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -101,7 +99,7 @@ public class HelloController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("db-view.fxml"));
             root = loader.load();
 
-            DbController controller = loader.getController();
+            DBController controller = loader.getController();
 
             controller.transferData(typeGame.getGameResults());
 
@@ -434,7 +432,7 @@ public class HelloController {
         int index = cbxTimer.getSelectionModel().getSelectedIndex();
 
 
-        newWord(7); //Get new words
+        newWord(7); //Create 7 new words to display
 
     }
 

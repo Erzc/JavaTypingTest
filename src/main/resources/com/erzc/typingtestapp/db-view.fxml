@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.DbController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.DBController">
    <children>
       <Button layoutX="273.0" layoutY="343.0" mnemonicParsing="false" onAction="#switchToHelloView" text="DONE" />
       <Label fx:id="lblResults" layoutX="224.0" layoutY="69.0" prefHeight="211.0" prefWidth="206.0" text="Summary goes here" wrapText="true" />

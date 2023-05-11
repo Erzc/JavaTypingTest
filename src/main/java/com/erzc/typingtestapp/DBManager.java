@@ -36,7 +36,7 @@ public class DBManager {
 
 
     //These arguments = columns of the db table, modify this--------------------------------------
-    public void insert(int recordID, double jgameTime, double jtotalWords, double jwpm, double jaccuracy){
+    public void insert(int recordID, String jgameName, double jtotalWords, double jwpm, double jaccuracy){
         try {
             //Insert a new record into the database
             String insertQuery =
@@ -47,7 +47,7 @@ public class DBManager {
             insertUpdate = connection.prepareStatement(insertQuery);
 
             insertUpdate.setInt(1, recordID); //called individually-------------------
-            insertUpdate.setDouble(2, jgameTime); //these are paramaterized inputs--------
+            insertUpdate.setString(2, jgameName); //these are paramaterized inputs--------
             insertUpdate.setDouble(3, jtotalWords);
             insertUpdate.setDouble(4, jwpm);
             insertUpdate.setDouble(5, jaccuracy);
@@ -80,7 +80,7 @@ public class DBManager {
 
     public String[] getRecordById(int recordID){
 
-        String jgameTime = "";
+        String jgameName = "";
         String jtotalWords= "";
         String jwpm = "";
         String jaccuracy = "";
@@ -101,7 +101,7 @@ public class DBManager {
 
             if(result.next())
             {
-                jgameTime = result.getString(2);
+                jgameName = result.getString(2);
                 jtotalWords = result.getString(3);
                 jwpm = result.getString(4);
                 jaccuracy = result.getString(5);
@@ -111,20 +111,20 @@ public class DBManager {
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String[] getRow = {jgameTime, jtotalWords, jwpm, jaccuracy};
+        String[] getRow = {jgameName, jtotalWords, jwpm, jaccuracy};
         return getRow; //Created array to return the row values------------------------------
         //getRow is assigned in the controller---------------------------------------------------
     }
 
-    public void editRecord(int recordID, double jgameTime, double jtotalWords, double jwpm, double jaccuracy){
+    public void editRecord(int recordID, String jgameName, double jtotalWords, double jwpm, double jaccuracy){
         try {
             PreparedStatement  editStatement = null;
             //update the record
             String editQuery = "UPDATE " + TABLE_NAME
-                    + " SET TYPE = ?, COLOR = ?, DIMENSIONS = ?, MATERIAL = ? WHERE ID = ?";
+                    + " SET NAME = ?, WORDS = ?, WPM = ?, ACCURACY = ? WHERE ID = ?";
             editStatement = connection.prepareStatement(editQuery);
 
-            editStatement.setDouble(1, jgameTime);
+            editStatement.setString(1, jgameName);
             editStatement.setDouble(2, jtotalWords);
             editStatement.setDouble(3, jwpm);
             editStatement.setDouble(4, jaccuracy);
@@ -158,7 +158,7 @@ public class DBManager {
         //  statement.executeUpdate
         String sql = "CREATE TABLE IF NOT EXISTS TypingTestApp ( \n"
                 + "   id integer PRIMARY KEY, \n"
-                + "   time double NOT NULL, \n"
+                + "   name string NOT NULL, \n"
                 + "   words double NOT NULL, \n"
                 + "   wpm double NOT NULL, \n"
                 + "   accuracy double Not Null\n"
@@ -172,11 +172,9 @@ public class DBManager {
         }
     }
 
-    //int recordID, double jgameTime, double jtotalWords, double jwpm, double jaccuracy
+    public void populateDatabase(){ //inserts [initial] elements to the table---------------------
 
-    public void populateDatabase(){ //inserts [initial..] elements to the table------------------
-
-        insert(1, 30.0, 40.0, 80, 98.00);
+        insert(1, "Round 1", 40.0, 80, 98.00);
 
     }
 

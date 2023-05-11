@@ -11,10 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-
-public class DbController {
+public class DBController {
 
     @FXML
     private Label lblResults;
@@ -28,6 +25,19 @@ public class DbController {
 
     //------------------------
     //Methods
+
+
+
+
+
+    //int recordID, double jgameName, double jtotalWords, double jwpm, double jaccuracy
+
+
+
+
+
+
+
     @FXML
     void switchToHelloView(ActionEvent event) {
 
