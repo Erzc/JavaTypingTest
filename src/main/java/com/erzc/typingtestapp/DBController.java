@@ -302,18 +302,6 @@ public class DBController {
         accuracyDB = accuracyC;
         wordsOL = wordsOLC;
 
-        //Check that player played one round (passed values aren't defaults)
-        if (totalWordsDB != 0.0 || wpmDB != 0.0 || accuracyDB != 0.0) {
-
-            //Insert new row at the end, recordID is what comes back from getLastID
-            int recordLastID = managerDB.getLastID();
-            //add 1 to recordID for the new record
-            //call the insertMethod in the DBManager and pass the values obtained
-            managerDB.insert(recordLastID + 1, "Round " + (recordLastID + 1), totalWordsDB, wpmDB, accuracyDB);
-
-            //Display the table
-            displayDB();
-        }
     }
 
 

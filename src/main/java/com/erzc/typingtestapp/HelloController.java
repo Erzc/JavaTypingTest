@@ -181,7 +181,8 @@ public class HelloController {
                 taSummary.setText(typeGame.getGameResults());
 
                 btnViewDb.setDisable(false);
-                btnViewDb.fire();
+                //btnViewDb.fire();
+                InsertRow();
             }
 
 //            @Override
@@ -322,6 +323,15 @@ public class HelloController {
 
         //create a message about the Typing Test and display with a JOP
         JOptionPane.showMessageDialog(null, "Typing Test is a JavaFX application written by Eric N.");
+    }
+
+    @FXML
+    public void InsertRow() {
+        //Insert new row at the end, recordID is what comes back from getLastID
+        int recordLastID = manager.getLastID();
+        //add 1 to recordID for the new record
+        //call the insertMethod in the DBManager and pass the values obtained
+        manager.insert(recordLastID + 1, "Round " + (recordLastID + 1), typeGame.GetTotalWords(), typeGame.GetWPM(), typeGame.GetAccuracy());
     }
 
     @FXML
