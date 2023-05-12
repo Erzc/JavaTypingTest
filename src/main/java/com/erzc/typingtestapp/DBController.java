@@ -184,11 +184,9 @@ public class DBController {
     @FXML
     private void initialize(){
 
+        //Uncomment to create initial database
         //manager.createTable();
-        //btnCreate.setDisable(true);
-
         //manager.populateDatabase();
-        //btnPopulate.setDisable(true);
 
     }
 
