@@ -64,6 +64,7 @@ public class HelloController {
     private int tempLetterIndex = 0, tempWordIndex = 0, corrCharCount = 0, incorrCharCount = 0, totalWordsTyped = 0;
     private long startTime = 0, numTime = 0;
 
+
     private ObservableList<String> cbList = FXCollections.observableArrayList("10", "30", "60", "90");
     private ArrayList<String> commonWords = new ArrayList<String>();
     private ArrayList<String> gameWords = new ArrayList<String>();
