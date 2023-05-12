@@ -90,7 +90,7 @@ public class HelloController {
 
             wordsOL = lvPrompts.getItems();
             controller.transferData(typeGame.getGameResults(), typeGame.GetTotalWords(), typeGame.GetWPM(),
-           typeGame.GetAccuracy(), wordsOL);
+            typeGame.GetAccuracy(), wordsOL);
 
             //show scene in new window
             Stage stage = new Stage();
@@ -169,6 +169,8 @@ public class HelloController {
                 typeGame.setTotalWords(totalWordsTyped);
 
                 taSummary.setText(typeGame.getGameResults());
+
+                btnViewDb.fire();
             }
 
 //            @Override
