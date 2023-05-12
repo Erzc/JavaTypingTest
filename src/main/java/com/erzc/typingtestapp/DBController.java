@@ -166,8 +166,6 @@ public class DBController {
 
     }
 
-
-
     @FXML
     public void transferData(String resultsC, double wordsC, double wpmC,
                              double accuracyC, ObservableList<String> wordsOLC) {
@@ -177,8 +175,25 @@ public class DBController {
         wpmDB = wpmC;
         accuracyDB = accuracyC;
         wordsOL = wordsOLC;
-
-        lblResults.setText(resultsC);
     }
+
+
+
+
+    //Initializer method
+    @FXML
+    private void initialize(){
+
+        //manager.createTable();
+        //btnCreate.setDisable(true);
+
+        //manager.populateDatabase();
+        //btnPopulate.setDisable(true);
+
+    }
+
+
+
+
 
 }
