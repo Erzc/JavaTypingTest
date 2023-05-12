@@ -31,34 +31,20 @@ public class HelloController {
     private Button btnStart;
     @FXML
     private Button btnViewDb;
-
     @FXML
     private ListView<String> lvPrompts;
-
     @FXML
     private TextArea taSummary;
-
     @FXML
     private TextField tfTypeHere;
-
     @FXML
     private Label lblTime;
     @FXML
     private Label lblCorrect;
-
     @FXML
     private Label lblIncorrect;
     @FXML
     private Label lblWordPrompt;
-
-    @FXML
-    private Label lblWordPrompt1;
-
-    @FXML
-    private Label lblWordPrompt2;
-
-    @FXML
-    private Label lblWordPrompt3;
     @FXML
     private ComboBox<String> cbxTimer;
 
@@ -134,7 +120,6 @@ public class HelloController {
 
         startTimer();
 
-        displayResults();
     }
 
     @FXML
@@ -212,7 +197,6 @@ public class HelloController {
 
         timer.start();
 
-
         btnStart.textProperty().bind(
                 Bindings.when(running)
                         .then("RUNNING")
@@ -243,44 +227,7 @@ public class HelloController {
 
         phrase = phrase.substring(phrase.indexOf(" ")+1); //remove first word
 
-
-//        index = rand.nextInt(commonWords.size());
-//        index1 = rand.nextInt(commonWords.size());
-//        index2 = rand.nextInt(commonWords.size());
-//        index3 = rand.nextInt(commonWords.size());
-//        //System.out.println(commonWords.get(index));
-//
-//        word = commonWords.get(index);
-//        word1 = commonWords.get(index1);
-//        word2 = commonWords.get(index2);
-//        word3 = commonWords.get(index3);
-//
-//        lblWordPrompt.setText(word);
-//        lblWordPrompt1.setText(word1);
-//        lblWordPrompt2.setText(word2);
-//        lblWordPrompt3.setText(word3);
-
     }
-
-//    @FXML
-//    public void newWord() {
-//
-//        int index = 0;
-//
-//        index = rand.nextInt(commonWords.size());
-//        //System.out.println(commonWords.get(index));
-//
-//        word = word1;
-//        word1 = word2;
-//        word2 = word3;
-//        word3 = commonWords.get(index);
-//
-//        lblWordPrompt.setText(word);
-//        lblWordPrompt1.setText(word1);
-//        lblWordPrompt2.setText(word2);
-//        lblWordPrompt3.setText(word3);
-//
-//    }
 
 
     @FXML
@@ -291,7 +238,6 @@ public class HelloController {
 
         //System.out.println("Key pressed: " + character);
 
-        //String newestWord = gameWords.get(gameWords.size() - 1);
         String newestWord = gameWords.get(tempWordIndex);
 
 
@@ -303,13 +249,10 @@ public class HelloController {
                     corrCharCount++;
                     tempLetterIndex++;
                     lblCorrect.setText(Long.toString(corrCharCount));
-                    //lblCorrect.setTextFill(Color.color(0, 1, 0));
                 }
                 else {
                     incorrCharCount++;
                     lblIncorrect.setText(Long.toString(incorrCharCount));
-
-                    //lblIncorrect.setTextFill(Color.color(1, 0, 0));
                 }
             //}
         }
@@ -324,16 +267,6 @@ public class HelloController {
             totalWordsTyped++;
             newWord(1); //Get a new word
         }
-
-
-    }
-
-    @FXML
-    void displayResults()
-    {
-
-
-        //typeGame.setResults();
 
     }
 
@@ -405,22 +338,14 @@ public class HelloController {
         if (isCBXEmpty){
             JOptionPane.showMessageDialog(null, "Error! Please select a time");
         }
-        else
-        {
+        else {
             String time = cbxTimer.getValue();
             numTime = Long.parseLong(time); //convert string to double
             typeGame.setTime(numTime);
             lblTime.setText(Long.toString(numTime));
         }
 
-
     }
-
-//    @FXML
-//    private void setTimerLabel() {
-//
-//    }
-
 
     //Initializer method
     @FXML
@@ -443,6 +368,5 @@ public class HelloController {
         newWord(7); //Create 7 new words to display
 
     }
-
 
 }

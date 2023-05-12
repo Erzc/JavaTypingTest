@@ -127,12 +127,14 @@ public class DBController {
     @FXML
     public void transferData(String resultsC, double wordsC, double wpmC,
                              double accuracyC, ObservableList<String> wordsOLC) {
+
         roundResultsDB = resultsC;
         totalWordsDB = wordsC;
         wpmDB = wpmC;
         accuracyDB = accuracyC;
         wordsOL = wordsOLC;
-        //lblResults.setText(mess);
+
+        lblResults.setText(resultsC);
     }
 
 
