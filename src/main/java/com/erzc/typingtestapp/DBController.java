@@ -10,6 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
@@ -17,6 +20,28 @@ public class DBController {
 
     @FXML
     private Label lblResults;
+    @FXML
+    private Button btnDelete;
+    @FXML
+    private Button btnDisplay;
+    @FXML
+    private Button btnEdit;
+    @FXML
+    private Button btnEnterID;
+    @FXML
+    private Button btnInsert;
+    @FXML
+    private ListView<String> lvDisplay;
+    @FXML
+    private TextField txtFieldAccuracy;
+    @FXML
+    private TextField txtFieldName;
+    @FXML
+    private TextField txtFieldWPM;
+    @FXML
+    private TextField txtFieldWords;
+    @FXML
+    private TextField txtfieldID;
 
     //------------------------
     //Private class variables
@@ -29,16 +54,36 @@ public class DBController {
     double totalWordsDB = 0.0, wpmDB = 0.0, accuracyDB = 0.0;
     ObservableList<String> wordsOL = FXCollections.observableArrayList();
 
-    //Create an object of the DBManager class to use
+    //Instantiate object of the DBManager class
     private DBManager manager = new DBManager();
 
     //------------------------
     //Methods
 
+    @FXML
+    void handleDeleteButton(ActionEvent event) {
 
+    }
 
+    @FXML
+    void handleDisplayButton(ActionEvent event) {
 
+    }
 
+    @FXML
+    void handleEditButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleEnterIDButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleInsertButton(ActionEvent event) {
+
+    }
 
 
 
@@ -76,7 +121,6 @@ public class DBController {
         //class member variables i.e. columns in the db
 
 
-        /*
 
         if (txtFieldName.getText().isEmpty() ||
                 txtFieldWords.getText().isEmpty() ||
@@ -107,18 +151,18 @@ public class DBController {
             gameNameDB = txtFieldName.getText();
 
             String sTotalWords = txtFieldWords.getText();
-            totalWordsDB = Double.parseDouble(sTotalWords)
+            totalWordsDB = Double.parseDouble(sTotalWords);
 
             String sWpm = txtFieldWPM.getText();
-            wpmDB = Double.parseDouble(sWpm)
+            wpmDB = Double.parseDouble(sWpm);
 
             String sAccuracy = txtFieldAccuracy.getText();
-            accuracyDB = Double.parseDouble(sAccuracy)
+            accuracyDB = Double.parseDouble(sAccuracy);
         }
 
 
 
-         */
+
 
     }
 
@@ -136,9 +180,5 @@ public class DBController {
 
         lblResults.setText(resultsC);
     }
-
-
-    //Initialize would go here
-
 
 }
