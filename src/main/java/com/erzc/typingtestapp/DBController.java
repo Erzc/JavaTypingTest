@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -31,6 +32,8 @@ public class DBController {
     private Button btnEnterID;
     @FXML
     private Button btnInsert;
+    @FXML
+    private Button btnBack;
     @FXML
     private ListView<String> lvDisplay;
     @FXML
@@ -59,8 +62,8 @@ public class DBController {
     private ObservableList<String> roundList = FXCollections.observableArrayList();
 
     //Instantiate object of the DBManager class
-    private DBManager manager = new DBManager();
-
+    //private DBManager managerDB = new DBManager();
+    private DBManager managerDB;
 
     //------------------------
     //Methods
@@ -72,7 +75,7 @@ public class DBController {
         //Pick up 5 values each time
         getRecordValues();
         //Insert at the end, recordID is what comes back from getLastID
-        int recordLastID = manager.getLastID();
+        int recordLastID = managerDB.getLastID();
 
         //add 1 to recordID for the new record
         //call the insertMethod in the DBManager and pass the values obtained
@@ -83,7 +86,7 @@ public class DBController {
             JOptionPane.showMessageDialog(null, "Error! Fields cannot be empty.");
         }
         else {
-            manager.insert(recordLastID + 1, gameNameDB, totalWordsDB, wpmDB, accuracyDB);
+            managerDB.insert(recordLastID + 1, gameNameDB, totalWordsDB, wpmDB, accuracyDB);
             clearTextFields(); //clear textfields for user
         }
 
@@ -101,7 +104,7 @@ public class DBController {
         getRecordValues();
 
         //Calls the editRecord method in the DBManager, passing the values from the textfields
-        manager.editRecord(recordIDDB, gameNameDB, totalWordsDB, wpmDB, accuracyDB);
+        managerDB.editRecord(recordIDDB, gameNameDB, totalWordsDB, wpmDB, accuracyDB);
 
         clearTextFields();
         displayDB();
@@ -119,7 +122,7 @@ public class DBController {
 
         //Fill the row with the values corresponding to recordID
         //getRecordByID returns the array of values (via. "return getRow" in DBManager)
-        enterRecord = manager.getRecordById(recordIDDB);
+        enterRecord = managerDB.getRecordById(recordIDDB);
 
         //Set the values from the array into the textfields
         txtFieldName.setText(enterRecord[0]);
@@ -197,14 +200,14 @@ public class DBController {
         //clear the observable List object
         roundList.clear();
 
-        int numRecord = manager.getLastID(); //if numRecords = 10, then have 10 records
+        int numRecord = managerDB.getLastID(); //if numRecords = 10, then have 10 records
 
         //create a local array for records
         String[] record = new String[4]; //4 = num columns
 
         for (int i = 1; i <= numRecord; i++)
         {
-            record = manager.getRecordById(i);
+            record = managerDB.getRecordById(i);
             //check if record[0] has blank row
             if (record[0].isBlank())
             {
@@ -232,7 +235,7 @@ public class DBController {
             JOptionPane.showMessageDialog(null, "Error! Please enter a record ID to delete.");
         }
         else {
-            manager.deleteRecord(recordIDDB);
+            managerDB.deleteRecord(recordIDDB);
             clearTextFields(); //clear textfields for user
             displayDB();
         }
@@ -243,23 +246,44 @@ public class DBController {
     void switchToHelloView(ActionEvent event) {
 
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
 
             root = loader.load();
 
+/*
+            //---------------------------------------------------------
+            //Stage oldStage = (Stage)btnBack.getScene().getWindow();
+            //oldStage.hide();
+
+            //show scene in new window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Typing Test Database");
+            //stage.showAndWait();
+            //stage.show();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            //---------------------------------------------------------
+*/
             //Call calculate score method, return final score
             //calculateScore();
             ///getFinalScore();
 
+
+
             //create an instance for the HelloController:
             HelloController controller = loader.getController();
             //use the instance to access the transferData method and pass an observable list
-            controller.transferData(wordsOL, roundResultsDB);
+            controller.transferData(wordsOL, roundResultsDB, managerDB);
 
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+
+
 
         }catch(IOException ex) {
             System.err.println(ex);
@@ -268,9 +292,10 @@ public class DBController {
     }
 
     @FXML
-    public void transferData(String resultsC, double wordsC, double wpmC,
+    public void transferData(DBManager managerC, String resultsC, double wordsC, double wpmC,
                              double accuracyC, ObservableList<String> wordsOLC) {
 
+        managerDB = managerC;
         roundResultsDB = resultsC;
         totalWordsDB = wordsC;
         wpmDB = wpmC;
@@ -281,10 +306,10 @@ public class DBController {
         if (totalWordsDB != 0.0 || wpmDB != 0.0 || accuracyDB != 0.0) {
 
             //Insert new row at the end, recordID is what comes back from getLastID
-            int recordLastID = manager.getLastID();
+            int recordLastID = managerDB.getLastID();
             //add 1 to recordID for the new record
             //call the insertMethod in the DBManager and pass the values obtained
-            manager.insert(recordLastID + 1, "Round " + (recordLastID + 1), totalWordsDB, wpmDB, accuracyDB);
+            managerDB.insert(recordLastID + 1, "Round " + (recordLastID + 1), totalWordsDB, wpmDB, accuracyDB);
 
             //Display the table
             displayDB();

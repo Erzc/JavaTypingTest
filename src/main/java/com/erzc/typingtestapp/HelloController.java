@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -50,8 +51,9 @@ public class HelloController {
 
     //------------------------
     //Instantiate objects
-    TypingGame typeGame = new TypingGame();
-    Random rand = new Random();
+    private TypingGame typeGame = new TypingGame();
+    private Random rand = new Random();
+    private DBManager manager = new DBManager();
 
     //------------------------
     //Private class variables
@@ -80,6 +82,7 @@ public class HelloController {
     @FXML
     void switchToDbScene(ActionEvent event) {
         Stage oldStage = (Stage)btnViewDb.getScene().getWindow();
+        //oldStage.hide();
         oldStage.close();
 
         try {
@@ -89,14 +92,18 @@ public class HelloController {
             DBController controller = loader.getController();
 
             wordsOL = lvPrompts.getItems();
-            controller.transferData(typeGame.getGameResults(), typeGame.GetTotalWords(), typeGame.GetWPM(),
+            controller.transferData(manager, typeGame.getGameResults(), typeGame.GetTotalWords(), typeGame.GetWPM(),
             typeGame.GetAccuracy(), wordsOL);
 
             //show scene in new window
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Typing Test Database");
-            stage.show();
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.setTitle("Typing Test Database");
+            //stage.showAndWait();
+            newStage.show();
+
+            //newStage.initModality(Modality.APPLICATION_MODAL);
+            //newStage.showAndWait();
 
 
         } catch (IOException ex) {
@@ -105,7 +112,9 @@ public class HelloController {
     }
 
     @FXML
-    public void transferData(ObservableList<String> wordsOLDB, String roundResultsDB) {
+    public void transferData(ObservableList<String> wordsOLDB, String roundResultsDB, DBManager managerDB) {
+
+        manager = managerDB;
 
         wordsOL = wordsOLDB;
         String roundResults = roundResultsDB;
@@ -113,11 +122,12 @@ public class HelloController {
         lvPrompts.setItems(wordsOL);
         taSummary.setText(roundResults);
 
-
     }
 
     @FXML
     void handleStartButtonAction(ActionEvent event) {
+
+        btnViewDb.setDisable(true);
 
         startTimer();
 
@@ -170,6 +180,7 @@ public class HelloController {
 
                 taSummary.setText(typeGame.getGameResults());
 
+                btnViewDb.setDisable(false);
                 btnViewDb.fire();
             }
 

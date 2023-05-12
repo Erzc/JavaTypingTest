@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="737.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.DBController">
    <children>
-      <Button defaultButton="true" layoutX="496.0" layoutY="696.0" mnemonicParsing="false" onAction="#switchToHelloView" prefHeight="27.0" prefWidth="103.0" text="GO BACK" />
+      <Button fx:id="btnBack" defaultButton="true" layoutX="496.0" layoutY="696.0" mnemonicParsing="false" onAction="#switchToHelloView" prefHeight="27.0" prefWidth="103.0" text="GO BACK" />
       <Button fx:id="btnInsert" layoutX="14.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleInsertButton" prefHeight="27.0" prefWidth="65.0" text="INSERT" textFill="#00bc19" />
       <Button fx:id="btnEdit" layoutX="268.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleEditButton" prefHeight="27.0" prefWidth="65.0" text="EDIT" textFill="#b9bf00" />
       <Button fx:id="btnDelete" cancelButton="true" layoutX="534.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="27.0" prefWidth="65.0" text="DELETE" textFill="#b90000" />
