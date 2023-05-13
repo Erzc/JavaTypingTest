@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +22,8 @@ import java.io.IOException;
 
 public class DBController {
 
+    @FXML
+    private LineChart<String, String> chartProgress;
     @FXML
     private Label lblResults;
     @FXML
@@ -235,7 +239,7 @@ public class DBController {
 
 
     @FXML
-    void switchToHelloView(ActionEvent event) {
+    private void switchToHelloView(ActionEvent event) {
 
         try {
 
@@ -269,9 +273,51 @@ public class DBController {
         wpmDB = wpmC;
         accuracyDB = accuracyC;
         wordsOL = wordsOLC;
+
+        displayDB();
+        generateLineChart();
     }
 
-    
+
+    private void generateLineChart(){
+
+        chartProgress.getData().clear();
+        XYChart.Series<String, String> series = new XYChart.Series<>();
+
+        //-------------
+
+        int numRecord = managerDB.getLastID();
+
+        //create a local array for records
+        String[] recordChart = new String[4]; //4 = num columns
+
+        for (int i = 1; i <= numRecord; i++)
+        {
+            recordChart = managerDB.getRecordById(i);
+            //check if record[0] has blank row
+            if (recordChart[0].isBlank()) {
+                continue;
+            }
+            else {
+                series.getData().add(new XYChart.Data<>(i+"", recordChart[2]));
+                //gameNameDB, totalWordsDB, wpmDB, accuracyDB)
+            }
+        }
+
+        //-------------
+
+
+        /*
+        series.getData().add(new XYChart.Data<String, Number>("Jan",200));
+        series.getData().add(new XYChart.Data<String, Number>("Feb",100));
+        series.getData().add(new XYChart.Data<String, Number>("Mar",300));
+        series.getData().add(new XYChart.Data<String, Number>("Apr",400));
+        */
+
+        chartProgress.getData().add(series);
+    }
+
+
 /*
     //Initializer method
     @FXML
