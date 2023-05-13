@@ -391,6 +391,11 @@ public class HelloController {
 
         newWord(7); //Create 7 new words to display
 
+
+        //Uncomment to create initial database
+        //manager.createTable();
+        //manager.populateDatabase();
+
     }
 
 }

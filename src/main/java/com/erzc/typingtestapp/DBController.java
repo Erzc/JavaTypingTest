@@ -90,9 +90,7 @@ public class DBController {
             clearTextFields(); //clear textfields for user
         }
 
-        //Display the table
-        displayDB();
-
+        displayDB(); //Display the table
     }
 
 
@@ -163,8 +161,7 @@ public class DBController {
             wpmDB = -1.0;
             accuracyDB = -1.0;
         }
-        else
-        {
+        else {
             String sRecordID = txtfieldID.getText();
             recordIDDB = Integer.parseInt(sRecordID); //convert String to int
 
@@ -180,9 +177,7 @@ public class DBController {
             accuracyDB = Double.parseDouble(sAccuracy);
         }
 
-
     }
-
 
     private void clearTextFields(){
         //clear all the text fields
@@ -192,7 +187,6 @@ public class DBController {
         txtFieldWPM.clear();
         txtFieldAccuracy.clear();
     }
-
 
     //DISPLAY button displays the db in the ListView
     private void displayDB(){
@@ -209,8 +203,7 @@ public class DBController {
         {
             record = managerDB.getRecordById(i);
             //check if record[0] has blank row
-            if (record[0].isBlank())
-            {
+            if (record[0].isBlank()) {
                 continue;
             }
             else {
@@ -230,8 +223,7 @@ public class DBController {
         //get the record ID entered in the textfield
         getRecordValues();
 
-        if (recordIDDB == -123)
-        {
+        if (recordIDDB == -123) {
             JOptionPane.showMessageDialog(null, "Error! Please enter a record ID to delete.");
         }
         else {
@@ -251,39 +243,15 @@ public class DBController {
 
             root = loader.load();
 
-/*
-            //---------------------------------------------------------
-            //Stage oldStage = (Stage)btnBack.getScene().getWindow();
-            //oldStage.hide();
-
-            //show scene in new window
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Typing Test Database");
-            //stage.showAndWait();
-            //stage.show();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-            //---------------------------------------------------------
-*/
-            //Call calculate score method, return final score
-            //calculateScore();
-            ///getFinalScore();
-
-
-
             //create an instance for the HelloController:
             HelloController controller = loader.getController();
-            //use the instance to access the transferData method and pass an observable list
+            //use the instance to access the transferData method and pass variables
             controller.transferData(wordsOL, roundResultsDB, managerDB);
 
             stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
-
-
 
         }catch(IOException ex) {
             System.err.println(ex);
@@ -301,24 +269,16 @@ public class DBController {
         wpmDB = wpmC;
         accuracyDB = accuracyC;
         wordsOL = wordsOLC;
-
     }
 
-
-
-
+    
+/*
     //Initializer method
     @FXML
     private void initialize(){
 
-        //Uncomment to create initial database
-        //manager.createTable();
-        //manager.populateDatabase();
-
     }
-
-
-
+*/
 
 
 }
