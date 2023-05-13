@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.chart.NumberAxis?>
 <AnchorPane prefHeight="508.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.DBController">
    <children>
       <Button fx:id="btnBack" defaultButton="true" layoutX="646.0" layoutY="473.0" mnemonicParsing="false" onAction="#switchToHelloView" prefHeight="27.0" prefWidth="103.0" text="GO BACK" />
@@ -29,12 +30,12 @@
       <TextField fx:id="txtFieldWords" layoutX="15.0" layoutY="367.0" prefHeight="27.0" prefWidth="270.0" promptText="Total words typed" />
       <TextField fx:id="txtFieldWPM" layoutX="15.0" layoutY="400.0" prefHeight="27.0" prefWidth="270.0" promptText="Words per minute (WPM)" />
       <TextField fx:id="txtFieldAccuracy" layoutX="15.0" layoutY="433.0" prefHeight="27.0" prefWidth="270.0" promptText="Accuracy" />
-      <LineChart fx:id="chartProgress" layoutX="308.0" layoutY="43.0" prefHeight="383.0" prefWidth="445.0" title="Overall Progress:">
+      <LineChart fx:id="chartProgress" layoutX="308.0" layoutY="66.0" prefHeight="383.0" prefWidth="445.0" title="Overall Progress:">
         <xAxis>
-          <CategoryAxis label="Round" side="BOTTOM" />
+          <NumberAxis label="Round" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <CategoryAxis label="WPM" side="LEFT" />
+          <NumberAxis layoutX="10.0" side="LEFT" />
         </yAxis>
       </LineChart>
       <Separator layoutX="301.0" layoutY="44.0" orientation="VERTICAL" prefHeight="471.0" prefWidth="7.0" />

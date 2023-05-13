@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
@@ -23,9 +24,13 @@ import java.io.IOException;
 public class DBController {
 
     @FXML
-    private LineChart<String, String> chartProgress;
+    private LineChart<Number, Number> chartProgress;
     @FXML
     private Label lblResults;
+    @FXML
+    private Button btnDisplayAcc;
+    @FXML
+    private Button btnDisplayWPM;
     @FXML
     private Button btnDelete;
     @FXML
@@ -219,6 +224,10 @@ public class DBController {
         //set the roundList into the listView
         lvDisplay.setItems(roundList);
 
+        chartProgress.getData().clear();
+        generateLineChart(2, "WPM (# of words)");
+        generateLineChart(3, "Accuracy (%)");
+
     }
 
 
@@ -275,17 +284,12 @@ public class DBController {
         wordsOL = wordsOLC;
 
         displayDB();
-        generateLineChart();
     }
 
+    private void generateLineChart(int columnI, String seriesTitle){
 
-    private void generateLineChart(){
-
-        chartProgress.getData().clear();
-        XYChart.Series<String, String> series = new XYChart.Series<>();
-
-        //-------------
-
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        
         int numRecord = managerDB.getLastID();
 
         //create a local array for records
@@ -299,32 +303,15 @@ public class DBController {
                 continue;
             }
             else {
-                series.getData().add(new XYChart.Data<>(i+"", recordChart[2]));
-                //gameNameDB, totalWordsDB, wpmDB, accuracyDB)
+                double record = Double.parseDouble(recordChart[columnI]); //Convert string to double
+                series.getData().add(new XYChart.Data<>(i, record)); //set WPM
             }
         }
 
-        //-------------
-
-
-        /*
-        series.getData().add(new XYChart.Data<String, Number>("Jan",200));
-        series.getData().add(new XYChart.Data<String, Number>("Feb",100));
-        series.getData().add(new XYChart.Data<String, Number>("Mar",300));
-        series.getData().add(new XYChart.Data<String, Number>("Apr",400));
-        */
+        series.setName(seriesTitle);
 
         chartProgress.getData().add(series);
     }
-
-
-/*
-    //Initializer method
-    @FXML
-    private void initialize(){
-
-    }
-*/
 
 
 }
