@@ -26,7 +26,7 @@ public class DBManager {
         try{
             // Instantiate/Establish a connection
             //Set the database name here.  Default is sample
-            connection = DriverManager.getConnection("jdbc:sqlite:typingtestapp.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:TypingTestApp.db");
 
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -36,7 +36,7 @@ public class DBManager {
 
 
     //These arguments = columns of the db table, modify this--------------------------------------
-    public void insert(int recordID, String jgameName, double jtotalWords, double jwpm, double jaccuracy){
+    public void insert(int recordID, String jgameName, int jtotalWords, int jwpm, double jaccuracy){
         try {
             //Insert a new record into the database
             String insertQuery =
@@ -116,7 +116,7 @@ public class DBManager {
         //getRow is assigned in the controller---------------------------------------------------
     }
 
-    public void editRecord(int recordID, String jgameName, double jtotalWords, double jwpm, double jaccuracy){
+    public void editRecord(int recordID, String jgameName, int jtotalWords, int jwpm, double jaccuracy){
         try {
             PreparedStatement  editStatement = null;
             //update the record
@@ -159,8 +159,8 @@ public class DBManager {
         String sql = "CREATE TABLE IF NOT EXISTS TypingTestApp ( \n"
                 + "   id integer PRIMARY KEY, \n"
                 + "   name string NOT NULL, \n"
-                + "   words double NOT NULL, \n"
-                + "   wpm double NOT NULL, \n"
+                + "   words integer NOT NULL, \n"
+                + "   wpm integer NOT NULL, \n"
                 + "   accuracy double Not Null\n"
                 + ");";
         //Using SQLlite ^^^ ---------------------------------------------------------------------
@@ -174,7 +174,7 @@ public class DBManager {
 
     public void populateDatabase(){ //inserts [initial] elements to the table---------------------
 
-        insert(1, "Round 1", 40.0, 80, 98.00);
+        insert(1, "Round 1", 40, 80, 98.00);
 
     }
 

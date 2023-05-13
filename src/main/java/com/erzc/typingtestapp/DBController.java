@@ -67,9 +67,9 @@ public class DBController {
     private Scene scene;
     private Parent root;
 
-    int recordIDDB = 0;
+    int recordIDDB = 0, totalWordsDB = 0, wpmDB = 0;
     String gameNameDB = "Round 1", roundResultsDB = "", totalRecordFormat = "";
-    double totalWordsDB = 0.0, wpmDB = 0.0, accuracyDB = 0.0;
+    double accuracyDB = 0.0;
 
     //Instantiate arraylist because the ListView<String> requires an ObservableList
     ObservableList<String> wordsOL = FXCollections.observableArrayList();
@@ -95,7 +95,7 @@ public class DBController {
         //call the insertMethod in the DBManager and pass the values obtained
 
         //Check if fields were not entered
-        if (recordIDDB == -123 | gameNameDB == "Please enter ID" || totalWordsDB == -1.0 || wpmDB == -1.0 || accuracyDB == -1.0)
+        if (recordIDDB == -123 | gameNameDB == "Please enter ID" || totalWordsDB == -1 || wpmDB == -1 || accuracyDB == -1.0)
         {
             JOptionPane.showMessageDialog(null, "Error! Fields cannot be empty.");
         }
@@ -166,8 +166,8 @@ public class DBController {
             }
 
             gameNameDB = "Please enter ID";
-            totalWordsDB = -1.0;
-            wpmDB = -1.0;
+            totalWordsDB = -1;
+            wpmDB = -1;
             accuracyDB = -1.0;
         }
         else {
@@ -177,10 +177,10 @@ public class DBController {
             gameNameDB = txtFieldName.getText();
 
             String sTotalWords = txtFieldWords.getText();
-            totalWordsDB = Double.parseDouble(sTotalWords);
+            totalWordsDB = Integer.parseInt(sTotalWords);
 
             String sWpm = txtFieldWPM.getText();
-            wpmDB = Double.parseDouble(sWpm);
+            wpmDB = Integer.parseInt(sWpm);
 
             String sAccuracy = txtFieldAccuracy.getText();
             accuracyDB = Double.parseDouble(sAccuracy);
@@ -275,7 +275,7 @@ public class DBController {
     }
 
     @FXML
-    public void transferData(DBManager managerC, String resultsC, double wordsC, double wpmC,
+    public void transferData(DBManager managerC, String resultsC, int wordsC, int wpmC,
                              double accuracyC, ObservableList<String> wordsOLC) {
 
         managerDB = managerC;

@@ -8,6 +8,7 @@ public class TypingGame {
     //Private member variables
     private String gameResults = "";
     private double gameTime = 30, corrChars = 0, incorrChars = 0, totalWords = 0, accuracy = 0, wpm = 0;
+    private int gameTimeI = 30, corrCharsI = 0, incorrCharsI = 0, totalWordsI = 0, wpmI = 0;
 
     //Code > Generate > Constructor > None
     public TypingGame() {
@@ -23,17 +24,18 @@ public class TypingGame {
     public double GetTime() {
         return gameTime;
     }
-    public double GetWPM() {
-        return wpm;
+    public int GetWPM() {
+        return wpmI;
     }
-    public double GetTotalWords() {
-        return totalWords;
+    public int GetTotalWords() {
+        return totalWordsI;
     }
     public double GetAccuracy() {
         return accuracy;
     }
 
 
+    //Implicitly converted to doubles for calculation
     public void setTime(double time) {
         gameTime = time;
     }
@@ -54,23 +56,23 @@ public class TypingGame {
 
     private void formatResults() {
 
-        //Format to no decimal places
-        gameTime = Math.round(gameTime);
-        corrChars = Math.round(corrChars);
-        incorrChars = Math.round(incorrChars);
-        totalWords = Math.round(totalWords);
-        wpm = Math.round(wpm);
+        //Cast doubles back to ints for displaying and inserting in database
+        corrCharsI = (int)corrChars;
+        incorrCharsI = (int)incorrChars;
+        gameTimeI = (int)gameTime;
+        totalWordsI = (int)totalWords;
+        wpmI = (int)wpm;
 
         //Format to two decimal places
         accuracy = Math.round(accuracy * 100.0) / 100.0;
 
 
         gameResults = "Typing Game Results: \n" +
-                "Time: " + gameTime + " seconds\n" +
-                "Correct characters typed: " + corrChars + "\n" +
-                "Incorrect characters typed: " + incorrChars + "\n" +
-                "Total words typed: " + totalWords + "\n\n" +
-                "Words per minute: " + wpm + "\n" +
+                "Time: " + gameTimeI + " seconds\n" +
+                "Correct characters typed: " + corrCharsI + "\n" +
+                "Incorrect characters typed: " + incorrCharsI + "\n" +
+                "Total words typed: " + totalWordsI + "\n\n" +
+                "Words per minute: " + wpmI + "\n" +
                 "Accuracy: " + accuracy + "%\n";
     }
 

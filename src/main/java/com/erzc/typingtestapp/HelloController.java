@@ -18,12 +18,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.*;
@@ -109,15 +107,13 @@ public class HelloController {
 
     @FXML
     public void transferData(ObservableList<String> wordsOLDB, String roundResultsDB, DBManager managerDB) {
-
+        //Set parameters to class variables to use again
         manager = managerDB;
-
         wordsOL = wordsOLDB;
         String roundResults = roundResultsDB;
 
         lvPrompts.setItems(wordsOL);
         taSummary.setText(roundResults);
-
     }
 
     @FXML
@@ -407,9 +403,9 @@ public class HelloController {
         newWord(7); //Create 7 new words to display
 
 
-        //Uncomment to create initial database
+        //Uncomment to create initial database-------------------------------------------------------------------
         //manager.createTable();
-        //manager.populateDatabase();
+       // manager.populateDatabase();
 
     }
 
