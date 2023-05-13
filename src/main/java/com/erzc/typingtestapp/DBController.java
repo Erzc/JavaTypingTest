@@ -289,7 +289,7 @@ public class DBController {
     private void generateLineChart(int columnI, String seriesTitle){
 
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        
+
         int numRecord = managerDB.getLastID();
 
         //create a local array for records
