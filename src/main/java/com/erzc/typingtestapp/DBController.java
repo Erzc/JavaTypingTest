@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class DBController {
 
@@ -55,6 +56,10 @@ public class DBController {
     private TextField txtFieldWords;
     @FXML
     private TextField txtfieldID;
+    @FXML
+    private Label lblTotWPM;
+    @FXML
+    private Label lblTotalAcc;
 
     //------------------------
     //Private class variables
@@ -63,7 +68,7 @@ public class DBController {
     private Parent root;
 
     int recordIDDB = 0;
-    String gameNameDB = "Round 1", roundResultsDB = "";
+    String gameNameDB = "Round 1", roundResultsDB = "", totalRecordFormat = "";
     double totalWordsDB = 0.0, wpmDB = 0.0, accuracyDB = 0.0;
 
     //Instantiate arraylist because the ListView<String> requires an ObservableList
@@ -226,7 +231,9 @@ public class DBController {
 
         chartProgress.getData().clear();
         generateLineChart(2, "WPM (# of words)");
+        lblTotWPM.setText(totalRecordFormat);
         generateLineChart(3, "Accuracy (%)");
+        lblTotalAcc.setText(totalRecordFormat+"%");
 
     }
 
@@ -288,9 +295,12 @@ public class DBController {
 
     private void generateLineChart(int columnI, String seriesTitle){
 
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
-
         int numRecord = managerDB.getLastID();
+        double totalRecord = 0.0;
+        double records = 0.0;
+        DecimalFormat dfTwo = new DecimalFormat("#.##");
+
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
         //create a local array for records
         String[] recordChart = new String[4]; //4 = num columns
@@ -305,8 +315,15 @@ public class DBController {
             else {
                 double record = Double.parseDouble(recordChart[columnI]); //Convert string to double
                 series.getData().add(new XYChart.Data<>(i, record)); //set WPM
+                totalRecord += record;
+                records++;
             }
         }
+
+        totalRecord = totalRecord / records;
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        totalRecordFormat = df.format(totalRecord);
 
         series.setName(seriesTitle);
 
