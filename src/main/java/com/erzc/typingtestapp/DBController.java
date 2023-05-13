@@ -145,11 +145,6 @@ public class DBController {
     }
 
     @FXML
-    private void handleDisplayButton(ActionEvent event) {
-        displayDB();
-    }
-
-    @FXML
     private void getRecordValues(){
         //extract the text values from the textFields, converts if necessary, and assigns to the
         //class member variables (i.e. columns in the db)

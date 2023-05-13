@@ -54,28 +54,24 @@ public class TypingGame {
 
     private void formatResults() {
 
-        //Format decimal place for displaying to user
-        DecimalFormat dfTwo = new DecimalFormat("#.##"); //Format to 2 decimal places
-        DecimalFormat dfOne = new DecimalFormat("#");
+        //Format to no decimal places
+        gameTime = Math.round(gameTime);
+        corrChars = Math.round(corrChars);
+        incorrChars = Math.round(incorrChars);
+        totalWords = Math.round(totalWords);
+        wpm = Math.round(wpm);
 
-        String accuracyFormat = dfTwo.format(accuracy);
+        //Format to two decimal places
+        accuracy = Math.round(accuracy * 100.0) / 100.0;
 
-        String gameTimeFormat = dfOne.format(gameTime);
-        String corrCharsFormat = dfOne.format(corrChars);
-        String incorrCharsFormat = dfOne.format(incorrChars);
-        String totalWordsFormat = dfOne.format(totalWords);
-        String wpmFormat = dfOne.format(wpm);
 
-        //String to display to user
         gameResults = "Typing Game Results: \n" +
-                "Time: " + gameTimeFormat + " seconds\n" +
-                "Correct characters typed: " + corrCharsFormat + "\n" +
-                "Incorrect characters typed: " + incorrCharsFormat + "\n" +
-                "Total words typed: " + totalWordsFormat + "\n\n" +
-                "Words per minute: " + wpmFormat + "\n" +
-                "Accuracy: " + accuracyFormat + "%\n";
-
+                "Time: " + gameTime + " seconds\n" +
+                "Correct characters typed: " + corrChars + "\n" +
+                "Incorrect characters typed: " + incorrChars + "\n" +
+                "Total words typed: " + totalWords + "\n\n" +
+                "Words per minute: " + wpm + "\n" +
+                "Accuracy: " + accuracy + "%\n";
     }
-
 
 }

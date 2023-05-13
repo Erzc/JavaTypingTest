@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.*;
@@ -341,9 +342,11 @@ public class HelloController {
     public void InsertRow() {
         //Insert new row at the end, recordID is what comes back from getLastID
         int recordLastID = manager.getLastID();
+
         //add 1 to recordID for the new record
         //call the insertMethod in the DBManager and pass the values obtained
-        manager.insert(recordLastID + 1, "Round " + (recordLastID + 1), typeGame.GetTotalWords(), typeGame.GetWPM(), typeGame.GetAccuracy());
+        manager.insert(recordLastID + 1, "Round " + (recordLastID + 1), typeGame.GetTotalWords(),
+                typeGame.GetWPM(), typeGame.GetAccuracy());
     }
 
     @FXML
