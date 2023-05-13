@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -57,11 +58,8 @@ public class HelloController {
 
     //------------------------
     //Private class variables
-    private Stage stage;
-    private Scene scene;
     private Parent root;
     private String gameTotals = "", word = "", phrase = "";;
-    private char character = 'a';
     private double clock = 0.1;
     private int tempLetterIndex = 0, tempWordIndex = 0, corrCharCount = 0, incorrCharCount = 0, totalWordsTyped = 0;
     private long startTime = 0, numTime = 0;
@@ -102,9 +100,6 @@ public class HelloController {
             //stage.showAndWait();
             newStage.show();
 
-            //newStage.initModality(Modality.APPLICATION_MODAL);
-            //newStage.showAndWait();
-
 
         } catch (IOException ex) {
             System.err.println(ex);
@@ -135,8 +130,6 @@ public class HelloController {
 
     @FXML
     public void startTimer() {
-
-        //cbxTimer.setDisable(true);
 
         //DoubleProperty is mutable and observed for changes, useful for data bindings
         DoubleProperty time = new SimpleDoubleProperty();
@@ -181,8 +174,10 @@ public class HelloController {
                 taSummary.setText(typeGame.getGameResults());
 
                 btnViewDb.setDisable(false);
-                //btnViewDb.fire();
-                InsertRow();
+
+                InsertRow(); //Add typing round row to the database
+
+                taSummary.requestFocus();
             }
 
 //            @Override
@@ -238,54 +233,71 @@ public class HelloController {
             phrase += word + " ";
         }
 
-        lblWordPrompt.setText(phrase);
-
+        lblWordPrompt.setText(phrase); //Set new phrase string into label
         phrase = phrase.substring(phrase.indexOf(" ")+1); //remove first word
-
     }
 
 
     @FXML
-    void typeOnKeyTyped(KeyEvent event) {
+    void typeOnKeyPressed(KeyEvent event) {
 
-        character = event.getCharacter().charAt(0);
-        //KeyCode checkBspc = event.getCode();
-
-        //System.out.println("Key pressed: " + character);
-
+        //Local variables
         String newestWord = gameWords.get(tempWordIndex);
+        char character = ' ';
+        KeyCode kc = event.getCode();
 
-
-        if (tempLetterIndex < newestWord.length())
-        {
-            //Check key entered is not a backspace
-            //if (event.getCode() != "\b") {
-                if (character == newestWord.charAt(tempLetterIndex)) {
-                    corrCharCount++;
-                    tempLetterIndex++;
-                    lblCorrect.setText(Long.toString(corrCharCount));
-                }
-                else {
-                    incorrCharCount++;
-                    lblIncorrect.setText(Long.toString(incorrCharCount));
-                }
-            //}
+        //Check if entered key is a letter, apostrophe/quote or space/enter
+        //If so, convert the keycode to a char, and call compareChar method
+        if (kc.isLetterKey()) {
+            character = Character.toLowerCase(kc.getName().charAt(0));
+            compareChar(newestWord, character);
         }
-        else
-        {
-            tempLetterIndex = 0;
-            tfTypeHere.setText(""); //clear textfield in order to type a new word
-            //lvPrompts.getItems().add(0, word); //Add word to listview
-            lvPrompts.getItems().add(0, gameWords.get(tempWordIndex));
-            tempWordIndex++;
-
-            totalWordsTyped++;
-            newWord(1); //Get a new word
+        else if (kc == KeyCode.QUOTE) {
+            character = "'".charAt(0);
+            compareChar(newestWord, character);
         }
-
+        else if (kc == KeyCode.SPACE || kc == KeyCode.ENTER) {
+            character = " ".charAt(0);
+            compareChar(newestWord, character);
+        }
+        //System.out.println("Typed character: " + character);
     }
 
-    //Saves final game and round results in a text file
+
+    @FXML
+    void compareChar(String newWord, char userChar){
+        //Check if user has typed the full word
+        if (tempLetterIndex < newWord.length())
+        {
+            //See if char entered matches the next character in the word
+            if (userChar == newWord.charAt(tempLetterIndex)) {
+                corrCharCount++;
+                tempLetterIndex++;
+                lblCorrect.setText(Long.toString(corrCharCount));
+            }
+            else {
+                incorrCharCount++;
+                lblIncorrect.setText(Long.toString(incorrCharCount));
+            }
+        }
+        else {
+            //Check whether the letter entered is a space, if so, get a new word
+            if (Character.isWhitespace(userChar))
+            {
+                tempLetterIndex = 0;
+                tfTypeHere.setText(""); //clear textfield in order to type a new word
+                //lvPrompts.getItems().add(0, word); //Add word to listview
+                lvPrompts.getItems().add(0, gameWords.get(tempWordIndex));
+                tempWordIndex++;
+
+                totalWordsTyped++;
+                newWord(1); //Get a new word
+            }
+        }
+    }
+
+
+    //Save round results in a text file
     @FXML
     void saveFileOnAction(ActionEvent event) {
 

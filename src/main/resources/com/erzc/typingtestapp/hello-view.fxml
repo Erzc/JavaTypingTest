@@ -17,9 +17,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erzc.typingtestapp.HelloController">
    <children>
-      <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="604.0">
+      <MenuBar layoutY="1.0" prefHeight="27.0" prefWidth="590.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -34,46 +34,46 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ListView fx:id="lvPrompts" layoutX="377.0" layoutY="536.0" prefHeight="170.0" prefWidth="190.0" />
-      <Label layoutX="136.0" layoutY="521.0" text="ROUND SUMMARY:">
+      <ListView fx:id="lvPrompts" layoutX="368.0" layoutY="536.0" prefHeight="170.0" prefWidth="190.0" />
+      <Label layoutX="127.0" layoutY="521.0" text="ROUND SUMMARY:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="taSummary" editable="false" layoutX="51.0" layoutY="536.0" prefHeight="170.0" prefWidth="292.0" wrapText="true" />
-      <TextArea editable="false" layoutX="119.0" layoutY="110.0" prefHeight="97.0" prefWidth="366.0" text="1. Select the combobox to set the timer.&#10;2. Select the &quot;Start&quot; button and begin typing.&#10;3. Round results will appear under &quot;Round Summary&quot;.&#10;4. Select &quot;View Database&quot; to see your overall progress.&#10;&#10;                               Good luck!" wrapText="true">
+      <TextArea fx:id="taSummary" editable="false" layoutX="42.0" layoutY="536.0" prefHeight="170.0" prefWidth="292.0" wrapText="true" />
+      <TextArea editable="false" layoutX="110.0" layoutY="110.0" prefHeight="97.0" prefWidth="366.0" text="1. Select the combobox to set the timer.&#10;2. Select the &quot;Start&quot; button and begin typing.&#10;3. Round results will appear under &quot;Round Summary&quot;.&#10;4. Select &quot;View Database&quot; to see your overall progress.&#10;&#10;                               Good luck!" wrapText="true">
          <font>
             <Font name="Marlett" size="14.0" />
          </font>
       </TextArea>
-      <Label layoutX="103.0" layoutY="35.0" text="How Fast Can You Type?" textFill="#007ba8">
+      <Label layoutX="94.0" layoutY="35.0" text="How Fast Can You Type?" textFill="#007ba8">
          <font>
             <Font name="Georgia" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="260.0" layoutY="95.0" text="INSTRUCTIONS:">
+      <Label layoutX="251.0" layoutY="95.0" text="INSTRUCTIONS:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnStart" layoutX="35.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="122.0" text="START" textFill="#00a40b" />
-      <Label fx:id="lblTime" layoutX="282.0" layoutY="231.0" text="30" textFill="#a1a1a1">
+      <Button fx:id="btnStart" layoutX="26.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleStartButtonAction" prefHeight="41.0" prefWidth="122.0" text="START" textFill="#00a40b" />
+      <Label fx:id="lblTime" layoutX="273.0" layoutY="231.0" text="30" textFill="#a1a1a1">
          <font>
             <Font name="Marlett" size="36.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbxTimer" layoutX="241.0" layoutY="279.0" onAction="#onActionComboBoxEvent" prefHeight="25.0" prefWidth="122.0" promptText="Set the timer" />
-      <Label fx:id="lblCorrect" layoutX="416.0" layoutY="459.0" text="0" textFill="#6bc975">
+      <ComboBox fx:id="cbxTimer" layoutX="232.0" layoutY="279.0" onAction="#onActionComboBoxEvent" prefHeight="25.0" prefWidth="122.0" promptText="Set the timer" />
+      <Label fx:id="lblCorrect" layoutX="407.0" layoutY="459.0" text="0" textFill="#6bc975">
          <font>
             <Font name="Marlett" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="440.0" text="CORRECT:">
+      <Label layoutX="381.0" layoutY="440.0" text="CORRECT:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="35.0" layoutX="43.0" layoutY="377.0" strokeType="OUTSIDE" width="535.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="35.0" layoutX="28.0" layoutY="378.0" strokeType="OUTSIDE" width="535.0">
          <stroke>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -96,29 +96,29 @@
             </LinearGradient>
          </stroke>
       </Rectangle>
-      <Label fx:id="lblWordPrompt" layoutX="47.0" layoutY="376.0" text="The quick brown fox jumps over the lazy dog">
+      <Label fx:id="lblWordPrompt" layoutX="32.0" layoutY="377.0" text="The quick brown fox jumps over the lazy dog">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="430.0" layoutY="521.0" text="TYPED WORDS:">
+      <Label layoutX="421.0" layoutY="521.0" text="TYPED WORDS:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="472.0" layoutY="440.0" text="INCORRECT:">
+      <Label layoutX="463.0" layoutY="440.0" text="INCORRECT:">
          <font>
             <Font name="Georgia" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblIncorrect" layoutX="506.0" layoutY="459.0" text="0" textFill="#b96161">
+      <Label fx:id="lblIncorrect" layoutX="497.0" layoutY="459.0" text="0" textFill="#b96161">
          <font>
             <Font name="Marlett" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="tfTypeHere" layoutX="39.0" layoutY="426.0" onKeyTyped="#typeOnKeyTyped" prefHeight="35.0" prefWidth="209.0" promptText="Type here" />
-      <Button fx:id="btnViewDb" defaultButton="true" layoutX="452.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToDbScene" prefHeight="41.0" prefWidth="122.0" text="VIEW DATABASE" textAlignment="CENTER" wrapText="true" />
-      <Separator layoutX="-2.0" layoutY="499.0" prefHeight="8.0" prefWidth="610.0" />
-      <Separator layoutX="-2.0" layoutY="356.0" prefHeight="8.0" prefWidth="610.0" />
+      <TextField fx:id="tfTypeHere" layoutX="30.0" layoutY="426.0" onKeyPressed="#typeOnKeyPressed" prefHeight="35.0" prefWidth="209.0" promptText="Type here" />
+      <Button fx:id="btnViewDb" defaultButton="true" layoutX="443.0" layoutY="268.0" mnemonicParsing="false" onAction="#switchToDbScene" prefHeight="41.0" prefWidth="122.0" text="VIEW DATABASE" textAlignment="CENTER" wrapText="true" />
+      <Separator layoutX="-12.0" layoutY="494.0" prefHeight="8.0" prefWidth="602.0" />
+      <Separator layoutX="-12.0" layoutY="351.0" prefHeight="8.0" prefWidth="602.0" />
    </children>
 </AnchorPane>

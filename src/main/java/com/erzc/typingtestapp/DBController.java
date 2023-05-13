@@ -302,6 +302,8 @@ public class DBController {
 
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
 
+        series.setName(seriesTitle);
+
         //create a local array for records
         String[] recordChart = new String[4]; //4 = num columns
 
@@ -320,14 +322,14 @@ public class DBController {
             }
         }
 
+        chartProgress.getData().add(series);
+
+        //Calculate overall averages (WPM & Accuracy)
         totalRecord = totalRecord / records;
 
         DecimalFormat df = new DecimalFormat("#.##");
         totalRecordFormat = df.format(totalRecord);
 
-        series.setName(seriesTitle);
-
-        chartProgress.getData().add(series);
     }
 
 
